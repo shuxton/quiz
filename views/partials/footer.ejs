@@ -1,0 +1,39 @@
+<center>
+    <div class="col-sm-12">
+        <p id="tik" style="font-size: 50px;color: forestgreen;"></p><br />
+        <p id="time" style="font-size: 50px;color: crimson;"></p>
+    </div>
+</center>
+<script> var curr = new Date("May 23, 2020 24:00:00").getTime();
+
+    var t = setInterval(function () {
+        var now = new Date().getTime();
+        var distance = curr - now;
+
+
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        if (distance < 0) {
+
+            document.getElementById("tik").innerHTML = "Contest has ended";
+
+        }
+        else {
+            document.getElementById("tik").innerHTML = "Contest ends in:";
+            document.getElementById("time").innerHTML = hours + "h "
+                + minutes + "m " + seconds + "s ";
+        }
+
+    }, 1000)</script>
+</body>
+<footer>
+
+    <div class="col-sm-12"
+        style="text-align: center;font-size:40px;font-style: oblique;font-family: -apple-system, BlinkMacSystemFont;">
+        Hosted by Vakesan</div>
+    <div class="col-sm-12" style="text-align: center;font-size:40px;color:navy">Website by Shubham N J</div>
+</footer>
+
+</html>

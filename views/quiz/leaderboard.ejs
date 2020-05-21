@@ -1,0 +1,20 @@
+<%- include("../partials/header")%>
+
+<center>
+  <div class="row" style="font-size: 60px;font-weight: bolder;color: navy;">
+    <div class="col sm-4">Rank</div>
+    <div class="col sm-4">Name</div>
+    <div class="col sm-4">Score</div>
+  </div>
+  <%var x=1;user.forEach(function(user){%>
+  <div class="row" style="font-size: 45px;font-weight: normal;"">
+    <div class=" col sm-4"><%=x%></div>
+  <div class="col sm-4"><%=user.username%></div>
+  <div class="col sm-4"><%=user.score%></div>
+  </div>
+  <%x=x+1})%>
+</center>
+
+
+
+<%- include('../partials/footer') %>
