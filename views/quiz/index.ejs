@@ -10,26 +10,28 @@ var distance = curr - now;
 if(distance<=0)y=10; %>
 
   <div class="col-sm-12">
-    <div class="jumbotron">
+    <div class="jumbotron" style="background:transparent !important">
       <%if(y<10){%>
       <form id="x" action="/quiz/<%=questions[x]._id%>/<%=currentUser._id%>/<%=currentUser.qno%>" method="POST">
 
 
         <div class="caption">
-          <h4 style="font-size: 50px;"><%=y+1%>)<%= questions[x].question %></h4>
+          <h4 style="font-size: 50px;color: goldenrod;"><%=y+1%>)<%= questions[x].question %></h4>
         </div>
-        <input type="radio" name="op" value="<%= questions[x].op1 %>" />
-        <label id="<%=x%>op1" for="op1" style="font-size: 40px;"><%= questions[x].op1 %></label><br />
-        <input type="radio" name="op" value="<%= questions[x].op2 %>" />
-        <label id="<%=x%>op2" for="op2" style="font-size: 40px;"><%= questions[x].op2 %></label><br />
-        <input type="radio" name="op" value="<%= questions[x].op3 %>" />
-        <label id="<%=x%>op3" for="op3" style="font-size: 40px;"><%= questions[x].op3 %></label><br />
-        <input type="radio" name="op" value="<%= questions[x].op4 %>" />
-        <label id="<%=x%>op4" for="op4" style="font-size: 40px;">
-          <%= questions[x].op4 %></label>
+        <div style="color:lightgreen">
+          <input type="radio" name="op" value="<%= questions[x].op1 %>" />
+          <label id="<%=x%>op1" for="op1" style="font-size: 40px;"><%= questions[x].op1 %></label><br />
+          <input type="radio" name="op" value="<%= questions[x].op2 %>" />
+          <label id="<%=x%>op2" for="op2" style="font-size: 40px;"><%= questions[x].op2 %></label><br />
+          <input type="radio" name="op" value="<%= questions[x].op3 %>" />
+          <label id="<%=x%>op3" for="op3" style="font-size: 40px;"><%= questions[x].op3 %></label><br />
+          <input type="radio" name="op" value="<%= questions[x].op4 %>" />
+          <label id="<%=x%>op4" for="op4" style="font-size: 40px;">
+            <%= questions[x].op4 %></label>
 
-        <br />
-        <button class="btn btn-primary" id="sub" type="submit" style="font-size: 30px;">
+          <br /></div>
+        <button class="btn btn-primary" id="sub" type="submit"
+          style="font-size: 30px;background-color: tomato;border-width: 0px;">
           <%if(y==9){%> Submit <%}else{%> Next <%}%>
         </button>
        
@@ -37,10 +39,11 @@ if(distance<=0)y=10; %>
       </form>
     
       <%}else{%>
-          <p style="font-size: 50px;">Hope you had fun!</p><br />
-          <p style="font-size: 50px;">Your score is <%=currentUser.score%></p><br />
+          <p style="font-size: 50px;color: goldenrod;">Hope you had fun!</p><br />
+          <p style="font-size: 50px;color: lightgreen;">Your score is <%=currentUser.score%></p><br />
 
-          <a class="btn btn-primary" id="sub" href="/quiz/leaderboard" style="font-size: 30px;">
+          <a class="btn btn-primary" id="sub" href="/quiz/leaderboard"
+            style="font-size: 30px;background-color: tomato;border-width: 0px;">
             Leaderboard
           </a>
           <%}%>

@@ -1,0 +1,126 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+body{
+    background-image: url("ImageMain.jpg");
+    background-size: auto;
+    background-position: center;
+    
+}
+
+header{
+    /* background-color: tomato; */
+    /* opacity: 70%; */
+    height: 100px;
+    background-size: cover;
+}
+
+ul{
+    
+    list-style-type: none;
+    /* float: right; */
+    margin-top: -35px;
+    display: inline-block;
+}
+
+li{
+    display: inline-block;
+}
+
+ul li a{
+    text-decoration: none;
+    color: blanchedalmond;
+    padding: 10px 20px 0px 10px;
+    margin-top: 20px;
+}
+
+
+ul li a:hover{
+    background-color: #fff;
+    text-align: center;
+    color: black;
+}
+
+.Odyssey{
+    color: white;
+    font-style: oblique;
+    font-size: 50px;
+    margin-top: 5px;
+}
+
+.headerbox{
+    max-width: 1200px;
+    margin: auto;
+}
+
+h1{
+    align-items: center;
+    text-align: center;
+    color: honeydew;
+    margin-top: 200px;
+    font-size: 100px;
+}
+
+.subtext{
+    text-align: center;
+    color: honeydew;
+}
+
+.button{
+    background-color: tomato;
+    color: black;
+    font-size: 20px;
+    margin-top: 50px;
+    margin-left: 620px;
+    border: 10px solid tomato;
+    display: inline-block;
+    border-radius: 5px;
+}
+
+/* .button:hover{
+    background: transparent;
+    color: tomato;
+    border: transparent;
+    align-items: center;
+    text-align: center;
+    font-size: 20px;
+} */
+
+/* Style for Sign In page */
+.container {
+    padding: 16px;
+    margin-top: 80px;
+    text-align: center;
+  }
+
+  .buttonn{
+    background-color: tomato;
+    color: black;
+    font-size: 20px;
+    margin-top: 50px;
+    border: 10px solid tomato;
+    display: inline-block;
+    width: 150px;
+    border-radius: 5px;
+  }
+
+  .label{
+      font-size: 20px;
+      color: thistle;
+      padding-bottom: 10px;
+      border-bottom: 10px;
+  }
+
+  .input{
+      font-size: 20px;
+      border-radius: 10px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      border-left: 10px;
+      border-right: 10px;
+      text-align: center;
+      margin-top: 5px;
+  }

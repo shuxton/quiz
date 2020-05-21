@@ -1,17 +1,66 @@
-<%- include("partials/header")%>
-<div class="jumbotron" style="background-color: lightskyblue; margin-bottom: 50%;">
-  <center>
-    <h1 style="font-family: cursive; font-size: 100px;">Odyssey</h1>
-    <p style="font-family: fantasy; font-size: 60px;">
-      A journey through space!
-    </p>
+<!DOCTYPE html>
+<html lang="en">
 
-    <a type="button" class="btn btn-lg" href="/quiz" style="
-        vertical-align:auto;
-        background-color: rgb(253, 172, 67);
-        color: rgb(3, 83, 50);
-        font-size: 40px;
-      ">Start</a>
+<head>
+  <link rel="stylesheet" href="../public//MainStyle.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Odyssey Quiz</title>
+  <link rel="shortcut icon" type="image/x-icon" href="../public/MainPage.html">
+</head>
+
+<body>
+  <header>
+    <div class="headerbox">
+      <div class="Odyssey">
+        <p>Odyssey</p>
+      </div>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <% if(!currentUser){ %>
+        <li><a href="/login">Sign in</a></li>
+        <li><a href="/register">Sign up</a></li>
+        <%}else{%>}
+        <li><a href="#">Signed in as <%=currentUser.username%></a></li>
+        <li><a href="/logout">Logout</a></li>
+        <%}%>
+        <li><a href="/quiz/leaderboard">LeaderBoard</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <h1>ODYSSEY</h1>
+  <p class="subtext">A journey through spacetime!</p>
+  <a type="button" class="button" value="Input Button">Start now</a>
+  <center>
+    <div class="col-sm-12">
+      <p id="tik" style="font-size: 50px;color: forestgreen;"></p><br />
+      <p id="time" style="font-size: 50px;color: crimson;"></p>
+    </div>
   </center>
-</div>
-<%- include('partials/footer') %>
+  <script> var curr = new Date("May 23, 2020 24:00:00").getTime();
+
+    var t = setInterval(function () {
+      var now = new Date().getTime();
+      var distance = curr - now;
+
+
+      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      if (distance < 0) {
+
+        document.getElementById("tik").innerHTML = "Contest has ended";
+
+      }
+      else {
+        document.getElementById("tik").innerHTML = "Contest ends in:";
+        document.getElementById("time").innerHTML = hours + "h "
+          + minutes + "m " + seconds + "s ";
+      }
+
+    }, 1000)</script>
+</body>
+
+</html>
