@@ -3,7 +3,7 @@ var router = express.Router();
 var Questions = require("../models/quiz");
 var middleware = require("../middleware");
 var User = require("../models/user");
-var a = -1, x = 0;
+var a = -1, x = 0, imgCount = 0;
 router.get("/", middleware.isLoggedIn, function (req, res) {
   if (a == -1) {
     x = Math.floor(Math.random() * 20);
@@ -13,7 +13,7 @@ router.get("/", middleware.isLoggedIn, function (req, res) {
     if (err) {
       console.log(err);
     } else {
-      res.render("quiz/index", { questions: allQuestions, x, a });
+      res.render("quiz/index", { questions: allQuestions, x, a, imgCount });
     }
   });
 
@@ -29,6 +29,36 @@ router.get("/leaderboard", function (req, res) {
   });
 });
 
+
+router.post("/img/:id/:uid/:qno", middleware.isLoggedIn, function (req, res) {
+  imgCount++;
+  if (imgCount <= 3) {
+    var myquery = { _id: req.params.uid };
+    var sc, y;
+
+    User.find(
+      myquery
+    ).exec(function (err, found) {
+      sc = parseInt(found[0].score);
+      var newvalues = {
+        $set: {
+          score: sc - 1,
+
+        }
+      };
+      User.updateOne(
+        myquery, newvalues, function (err, res) {
+
+          console.log(sc);
+        }
+      )
+    })
+  }
+  else imgCount = 3;
+
+  res.redirect("/quiz");
+
+})
 router.post("/:id/:uid/:qno", middleware.isLoggedIn, function (req, res) {
 
   a = a + 1;

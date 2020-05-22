@@ -4,14 +4,15 @@
 
   <%var y=currentUser.qno;
 x=x+a;
-var curr = new Date("May 22, 2020 23:39:00").getTime();
+var count=0;
+var curr = new Date("May 26, 2020 00:39:00").getTime();
 var now = new Date().getTime();
 var distance = curr - now;
 if(distance<=0)y=10; %>
 
   <div class="col-sm-12">
     <div class="jumbotron" style="background:transparent !important">
-      <%if(y<10){%>
+      <%if(y<0){%>
       <form id="x" action="/quiz/<%=questions[x]._id%>/<%=currentUser._id%>/<%=currentUser.qno%>" method="POST">
 
 
@@ -32,13 +33,41 @@ if(distance<=0)y=10; %>
           <br /></div>
         <button class="btn btn-primary" id="sub" type="submit"
           style="font-size: 30px;background-color: tomato;border-width: 0px;">
-          <%if(y==9){%> Submit <%}else{%> Next <%}%>
+          Next
         </button>
-       
-
       </form>
-    
-      <%}else{%>
+      <%}else if(y<=9){%>
+
+      <center>
+        <div class="row text-center" style="display:flex; flex-wrap: wrap;">
+          <%for(var i=0;i<=imgCount;i++){%>
+          <div class="col-md-3 col-sm-6">
+            <div class="thumbnail" style="width: 200px;">
+              <img src="https://picsum.photos/200" style="height: 200px;padding: 10px;">
+            </div>
+          </div>
+          <%}%>
+      </div>
+    </center>
+      <form id="xx" action="/quiz/img/<%=questions[x]._id%>/<%=currentUser._id%>/<%=currentUser.qno%>" method="POST">
+
+          <button class="btn btn-primary" id="sub1" type="submit" value="0"
+            style="font-size: 30px;background-color:firebrick;border-width: 0px;margin-top: 10px;margin-left: 15px;">
+            Next Clue
+          </button>
+
+          </form>
+          <form id="xx" action="/quiz/<%=questions[x]._id%>/<%=currentUser._id%>/<%=currentUser.qno%>" method="POST">
+            <label for="text" style="margin-left: 15px;font-size: 30px;color:royalblue;">Answer-</label>
+            <input class="text" type="text" placeholder="max two lowercase words"
+              style="margin-top: 10px;margin-left: 15px;height: 45px;"><br />
+            <button class="btn btn-primary" id="sub2" type="submit"
+              style="font-size: 30px;background-color: tomato;border-width: 0px;margin-top: 10px;margin-left: 15px;">
+              Submit
+            </button>
+          </form>
+
+          <%}else{%>
           <p style="font-size: 50px;color: goldenrod;">Hope you had fun!</p><br />
           <p style="font-size: 50px;color: lightgreen;">Your score is <%=currentUser.score%></p><br />
 
@@ -66,6 +95,8 @@ if(distance<=0)y=10; %>
     }
   });
 
+
+
 </script>
 
-<%- include('../partials/footer') %>
+          <%- include('../partials/footer') %>
