@@ -25,12 +25,11 @@
 
 <body style="background-color: rgb(196, 202, 214);">
   <header>
-    <div class="headerbox">
-      <div class="Odyssey">
-        <p>Odyssey</p>
-      </div>
+    <div class="od"><a id="club" href="/"
+        style="color: dodgerblue;font-style: oblique;font-weight: bold;font-size: 45px;">Odyssey</a><br />
+
       <ul>
-        <li><a href="/">Home</a></li>
+
         <% if(!currentUser){ %>
         <li><a href="/login">Sign in</a></li>
         <li><a href="/register">Sign up</a></li>
@@ -38,7 +37,8 @@
         <li><a href="#">Signed in as <%=currentUser.username%></a></li>
         <li><a href="/logout">Logout</a></li>
         <%}%>
-        <li><a href="/leaderboard">LeaderBoard</a></li>
+        <li style="margin-right: 0px;"><a href="/quiz/leaderboard" style="margin-right: 0px;">LeaderBoard</a></li>
       </ul>
+    </div>
     </div>
   </header>
