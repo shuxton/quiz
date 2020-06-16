@@ -5,8 +5,10 @@
   <%var y=currentUser.qno;
 x=x+a;
 var count=0;
-var curr = new Date("July 26, 2020").getTime();
-var now = new Date().getTime();
+var curr = new Date(end).getTime();
+var now = new Date(start).getTime();
+var n=new Date().getTime();
+if(n>now)now=n-now
 var distance = curr - now;
 
  %>
@@ -19,8 +21,9 @@ var distance = curr - now;
 
         <div class="caption">
           <h4 style="font-size: 50px;color: goldenrod;"><%=y+1%>)<%= questions[x].question %></h4>
+          <h4 style="font-size: 50px;color: goldenrod;"><%=y+1%>)<%= distance%></h4>
        
-          <p id="time" style="font-size: 25px;color: crimson;"></p>
+          <p id="qtime" style="font-size: 25px;color: crimson;"></p>
         </div>
         <div style="color:lightgreen">
           <input type="radio" name="op" value="<%= questions[x].op1 %>" />
@@ -42,6 +45,8 @@ var distance = curr - now;
       <%}else if(y<15){ %>
         <div class="caption">
           <h4 style="font-size: 50px;color: goldenrod;"><%=y+1%>)<%= cquestions[cx].question %></h4>
+          <h4 style="font-size: 50px;color: goldenrod;"><%=y+1%>)<%= distance%></h4>
+       
           <p id="qtime" style="font-size: 25px;color: crimson;"></p>
         </div>
       <center>
@@ -103,17 +108,13 @@ var distance = curr - now;
 
         
          
-<script>$(document).ready(function () {
-
-    if (document.URL.indexOf("#") == -1) {
-
-      url = document.URL + "#";
-      location = "#";
-
-
-      location.reload(true);
+<script>
+window.onload = function() {
+    if(!window.location.hash) {
+        window.location = window.location + '#loaded';
+        window.location.reload();
     }
-  });
+}
 
   var cur = 30;
   var qt = setInterval(function () {

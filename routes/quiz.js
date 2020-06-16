@@ -5,7 +5,7 @@ var Cquestions = require("../models/cquestions");
 var middleware = require("../middleware");
 var User = require("../models/user");
 var Host = require("../models/admin");
-var Auth= require("../models/auth");
+var Authen= require("../models/auth");
 const { render } = require("ejs");
 
 
@@ -24,23 +24,30 @@ router.get("/admin",function(req,res){
 router.post("/adminlogin",function(req,res){
   var u=req.body.username
   var p=req.body.password
-  Auth.find({}).exec(function(err,found){
+  Authen.find({}).exec(function(err,found){
+    console.log(found)
     if(err)console.log(err)
     else if(found.length!=0){
+     
       if(u==found[0].username && p==found[0].password){
+        console.log(u)
+        console.log(found[0].username)
         res.render("quiz/admin",{key})
       }
+      else res.render("quiz/adminauth")
     }
-  })
-  res.render("quiz/adminauth")
+    else res.render("quiz/adminauth")
+  }) 
+ 
+  
 })
 
 
 
 router.post("/host",function(req,res){
-  Host.findMany({title:req.body.title}).exec(function(err,tit){
+  Host.find({title:req.body.title}).exec(function(err,tit){
     if(tit.length==0){
-      Host.insertMany({title:req.body.title,tag:req.body.tag},function(err){
+      Host.insertMany({title:req.body.title,tag:req.body.tag,mcq:req.body.mcq,con:req.body.con,start:req.body.start,end:req.body.end},function(err){
         if(err)console.log(err)
        else{
           key=true
@@ -96,7 +103,14 @@ router.get("/", middleware.isLoggedIn, function (req, res) {
         if (err) {
           console.log(err);
         } else {
-      res.render("quiz/index", { questions: allQuestions,cquestions:allCquestions ,x,cx, a, imgCount });
+          Host.find({},function(err,found){
+            if (err) {
+              console.log(err);
+            } else {
+              res.render("quiz/index", { questions: allQuestions,cquestions:allCquestions,start:found[0].start,end:found[0].end ,x,cx, a, imgCount });
+            }
+          })
+     
     }
   })
   }});
@@ -115,9 +129,9 @@ router.get("/leaderboard", function (req, res) {
       var title;
       Host.find({}).exec(function(err,found){
         title=found[0].title;
-        })
-      res.render("quiz/leaderboard", { user: allUsers,title });
-    }
+       
+      res.render("quiz/leaderboard", { user: allUsers,title,start:found[0].start,end:found[0].end });
+    }) }
   });
 });
 

@@ -3,22 +3,27 @@ var router = express.Router();
 var passport = require("passport");
 var User = require("../models/user");
 var Host= require("../models/admin")
-var title,tag;
+var title,tag,start,end;
 //root route
+
 router.get("/", function (req, res) {
 Host.find({}).exec(function(err,found){
 title=found[0].title;
 tag=found[0].tag;
+start=found[0].start;
+end=found[0].end
 })
-  res.render("landing",{title},tag);
+  res.render("landing",{title,tag,start,end});
 });
 
 // show register form
 router.get("/register", function (req, res) {
   Host.find({}).exec(function(err,found){
     title=found[0].title;
+    start=found[0].start;
+end=found[0].end
     })
-  res.render("register",{title});
+  res.render("register",{title,start,end});
 });
 
 //handle sign up logic
@@ -40,8 +45,10 @@ router.post("/register", function (req, res) {
 router.get("/login", function (req, res) {
   Host.find({}).exec(function(err,found){
     title=found[0].title;
+    start=found[0].start;
+    end=found[0].end
     })
-  res.render("login",{title});
+  res.render("login",{title,start,end});
 });
 
 //handling login logic
