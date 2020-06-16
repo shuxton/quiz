@@ -5,14 +5,25 @@
   <link rel="stylesheet" href="../public//MainStyle.css">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Odyssey Quiz</title>
+  <%if(title!=null){%>
+    <title><%=title%> Quiz</title>
+    <%}else{%>
+      <title>Quiz</title>
+      <%}%>
+  
   <link rel="shortcut icon" type="image/x-icon" href="../public/MainPage.html">
 </head>
 
 <body>
   <header>
-    <div class="od"><a id="club" href="/"
-        style="color: dodgerblue;font-style: oblique;font-weight: bold;font-size: 45px;">Odyssey</a><br />
+    <%if(title!=null){%>
+      <div class="od"><a id="club" href="/"
+        style="color: dodgerblue;font-style: oblique;font-weight: bold;font-size: 45px;"><%=title%></a><br />
+      <%}else{%>
+        <div class="od"><a id="club" href="/"
+          style="color: dodgerblue;font-style: oblique;font-weight: bold;font-size: 45px;">Quiz</a><br />
+        <%}%>
+  
 
       <ul>
 
@@ -29,8 +40,17 @@
     </div>
   </header>
   <div class="Maincontent">
-  <h1>ODYSSEY</h1>
-  <p class="subtext">A journey through spacetime!</p>
-  <a type="button" href="/quiz" class="button" value="Input Button">Start now</a>
-  <div>
+    <%if(title!=null && tag!=null){%>
+      <h1><%=title%></h1>
+      <p class="subtext"><%=tag%></p>
+      <a type="button" href="/quiz" class="button" value="Input Button">Start now</a>
+      <div>
+      <%}else{%>
+        <h1>Quiz</h1>
+        <p class="subtext">Fancy tag line!</p>
+        <a type="button" href="/quiz" class="button" value="Input Button">Start now</a>
+        <div>
+        <%}%>
+    
+  
    <%- include('./partials/footer') %>

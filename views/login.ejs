@@ -5,15 +5,19 @@
   <link rel="stylesheet" href="../public/MainStyle.css">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title> Odyssey-Sign In</title>
+  <title>Sign In</title>
   <link rel="shortcut icon" type="image/x-icon" href="../public/K-logo.png">
 </head>
 
 <body>
   <header>
-    <div class="od"><a id="club" href="/"
-        style="color: dodgerblue;font-style: oblique;font-weight: bold;font-size: 45px;">Odyssey</a><br />
-
+    <%if(title!=null){%>
+      <div class="od"><a id="club" href="/"
+        style="color: dodgerblue;font-style: oblique;font-weight: bold;font-size: 45px;"><%=title%></a><br />
+      <%}else{%>
+        <div class="od"><a id="club" href="/"
+          style="color: dodgerblue;font-style: oblique;font-weight: bold;font-size: 45px;">Quiz</a><br />
+        <%}%>
       <ul>
 
         <% if(!currentUser){ %>

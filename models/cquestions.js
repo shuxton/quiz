@@ -1,6 +1,6 @@
 var mongoose = require("mongoose");
 
-var questionsSchema = new mongoose.Schema({
+var cquestionsSchema = new mongoose.Schema({
   question: String,
   op1: String,
   op2: String,
@@ -11,4 +11,4 @@ var questionsSchema = new mongoose.Schema({
 
 
 
-module.exports = mongoose.model("Questions", questionsSchema);
+module.exports = mongoose.model("Cquestions", cquestionsSchema);

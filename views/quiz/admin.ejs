@@ -1,0 +1,71 @@
+<html>
+    <head>
+    <title>admin</title>
+</head>
+<body>
+    <%if (!key){%>
+    <div>
+    <h1>Admin Panel</h1>
+    <form action="/quiz/host" method="POST">
+    <label for="title">Title of the quiz</label>
+    <input type="text"  name="title" style="margin-bottom: 5px;"></input><br/>
+    <label for="tag">Tag line of the quiz</label>
+    <input type="text"  name="tag" style="margin-bottom: 5px;"></input><br/>    
+    <label for="mcq">Number of MCQs</label>
+    <input type="number"  name="mcq" style="margin-bottom: 5px;"></input><br/>
+    <label for="con">Number of Connect</label>
+    <input type="number"  name="con" style="margin-bottom: 5px;"></input><br/>
+    <label for="start">Start Time</label>
+    <input type="date"  name="start" style="margin-bottom: 5px;"></input><br/>
+    <label for="end">End Time</label>
+    <input type="date"  name="end" style="margin-bottom: 5px;"></input><br/>
+    <button type="submit">Next</button>
+    </form>
+    <%}else{%>
+        <form action="/quiz/addQ" method="POST">
+        <div>
+            <h1>MCQ Questions</h1>
+           
+            <label for="question">Question</label>
+            <input type="text"  name="question" style="margin-bottom: 5px;"></input><br/>
+            <label for="op1">Option 1</label>
+            <input type="text"  name="op1" style="margin-bottom: 5px;"></input><br/>
+            <label for="op2">Option 2</label>
+            <input type="text" name="op2" style="margin-bottom: 5px;"></input></br>
+            <label for="op3">Option 3</label>
+            <input type="text" name="op3"style="margin-bottom: 5px;"></input></br>
+            <label for="op4">Option 4</label>
+            <input type="text" name="op4"style="margin-bottom: 5px;"></input></br>
+            <label for="answer">Answer</label>
+            <input type="text"  name="answer" style="margin-bottom: 5px;"></input><br/>
+            <button type="submit">Add</button>    
+        </div>
+    </form>
+        <form action="/quiz/addC" method="POST">
+        <div>
+            <h1>Connect Questions</h1>
+           
+            <label for="question">Question</label>
+            <input type="text"  name="question" style="margin-bottom: 5px;"></input><br/>
+            <label for="op1">Image 1 URL</label>
+            <input type="text"  name="op1" style="margin-bottom: 5px;"></input><br/>
+            <label for="op2">Image 2 URL</label>
+            <input type="text" name="op2" style="margin-bottom: 5px;"></input></br>
+            <label for="op3">Image 3 URL</label>
+            <input type="text" name="op3"style="margin-bottom: 5px;"></input></br>
+            <label for="op4">Image 4 URL</label>
+            <input type="text" name="op4"style="margin-bottom: 5px;"></input></br>
+            <label for="answer">Answer</label>
+            <input type="text"  name="answer" style="margin-bottom: 5px;"></input><br/>
+            <button type="submit">Add</button>
+       
+           
+        </div>
+    </form>
+    <form action="/quiz/" method="GET">
+    <button type="submit">Exit</button>
+</form>
+        <%}%>
+</div>
+</body>
+</html>
