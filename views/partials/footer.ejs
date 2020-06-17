@@ -1,14 +1,20 @@
 <%var curr = new Date(end).getTime();
-curr=curr+14400000
+curr=curr+43200000
 
     var now = new Date(start).getTime();
-  now=now+14400000
+  now=now+43200000
     var n=new Date().getTime();
-    if(now>n){%>
+    if(now>n){var distance =  now;
+
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000); %>
 <center>
     <div class="col-sm-12">
         <p id="tik" style="font-size: 50px;color: forestgreen;">Contest starts at: </p><br />
-        <p id="time" style="font-size: 50px;color: crimson;"><%=new Date(now)%></p>
+        <p id="time" style="font-size: 50px;color: crimson;"> <%=start.toLocaleDateString()%>
+            <%=hours%>h <%=minutes%>m <%=seconds%>s</p>
     </div>
 </center>
 
@@ -26,11 +32,18 @@ curr=curr+14400000
         <p id="time" style="font-size: 50px;color: crimson;"></p>
     </div>
 </center>
-<%}else{%>
+<%}else{var distance = curr ;
+
+    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000); 
+    %>
 <center>
     <div class="col-sm-12">
         <p id="tik" style="font-size: 50px;color: forestgreen;">Contest ends at:</p><br />
-        <p id="time" style="font-size: 50px;color: crimson;"> <%=new Date(curr)%></p>
+        <p id="time" style="font-size: 50px;color: crimson;">
+            <%=end.toLocaleDateString()%> <%=hours%>h <%=minutes%>m <%=seconds%>s</p>
     </div>
 </center>
 
