@@ -1,8 +1,9 @@
 var mongoose = require("mongoose");
 
 var authenSchema = new mongoose.Schema({
- username:String,
- password:String,
+    username: String,
+    password: String,
+    login: Boolean
 });
 
 

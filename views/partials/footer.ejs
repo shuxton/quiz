@@ -4,7 +4,7 @@ curr=curr+43200000
     var now = new Date(start).getTime();
   now=now+43200000
     var n=new Date().getTime();
-    if(now>n){var distance =  now;
+    if(now>n){var distance =  now-n;
 
         var days = Math.floor(distance / (1000 * 60 * 60 * 24));
         var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -12,9 +12,10 @@ curr=curr+43200000
         var seconds = Math.floor((distance % (1000 * 60)) / 1000); %>
 <center>
     <div class="col-sm-12">
-        <p id="tik" style="font-size: 50px;color: forestgreen;">Contest starts at: </p><br />
-        <p id="time" style="font-size: 50px;color: crimson;"> <%=start.toLocaleDateString()%>
-            <%=hours%>h <%=minutes%>m <%=seconds%>s</p>
+        </br>
+        <p id="tik" style="font-size: 25px;color: forestgreen;">Contest starts in: </p>
+        <p id="time" style="font-size: 20px;color: crimson;">
+            <%=days%>d <%=hours%>h <%=minutes%>m <%=seconds%>s</p>
     </div>
 </center>
 
@@ -28,22 +29,19 @@ curr=curr+43200000
     %>
 <center>
     <div class="col-sm-12">
-        <p id="tik" style="font-size: 50px;color: forestgreen;">Contest has ended</p><br />
-        <p id="time" style="font-size: 50px;color: crimson;"></p>
+        </br>
+        <p id="tik" style="font-size: 25px;color: forestgreen;">Contest has ended</p>
+        <p id="time" style="font-size: 20px;color: crimson;"></p>
     </div>
 </center>
-<%}else{var distance = curr ;
-
-    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    var seconds = Math.floor((distance % (1000 * 60)) / 1000); 
+<%}else{
     %>
 <center>
     <div class="col-sm-12">
-        <p id="tik" style="font-size: 50px;color: forestgreen;">Contest ends at:</p><br />
-        <p id="time" style="font-size: 50px;color: crimson;">
-            <%=end.toLocaleDateString()%> <%=hours%>h <%=minutes%>m <%=seconds%>s</p>
+        </br>
+        <p id="tik" style="font-size: 25px;color: forestgreen;">Contest ends in:</p>
+        <p id="time" style="font-size: 20px;color: crimson;">
+            <%=days%>d <%=hours%>h <%=minutes%>m <%=seconds%>s</p>
     </div>
 </center>
 

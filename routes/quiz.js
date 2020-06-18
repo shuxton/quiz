@@ -15,7 +15,7 @@ var a = -1, x = 0, cx = 0, imgCount = 0, key = false, mcq = 0, con = 0, login = 
 
 
 
-router.get("/admin", function (req, res) {
+router.get("/admin6788", function (req, res) {
   if (login) res.render("quiz/admin", { key })
   else res.render("quiz/adminauth")
 })
@@ -67,19 +67,20 @@ router.post("/host", function (req, res) {
 
 router.post("/addQ", function (req, res) {
   Questions.insertMany({ question: req.body.question, op1: req.body.op1, op2: req.body.op2, op3: req.body.op3, op4: req.body.op4, answer: req.body.answer })
-  res.redirect("/quiz/admin")
+  res.redirect("/quiz/admin6788")
 })
 
 
 
 router.post("/addC", function (req, res) {
   Cquestions.insertMany({ question: req.body.question, op1: req.body.op1, op2: req.body.op2, op3: req.body.op3, op4: req.body.op4, answer: req.body.answer })
-  res.redirect("/quiz/admin")
+  res.redirect("/quiz/admin6788")
 })
 
 
 
 router.get("/", middleware.isLoggedIn, function (req, res) {
+  login = false
   if (a == -1) {
     Host.find(
       {}
@@ -109,6 +110,9 @@ router.get("/", middleware.isLoggedIn, function (req, res) {
             if (err) {
               console.log(err);
             } else {
+              console.log("x=" + x)
+              console.log("a=" + a)
+              console.log("cx=" + cx)
               res.render("index", { questions: allQuestions, cquestions: allCquestions, start: found[0].start, end: found[0].end, x, cx, a, imgCount });
             }
           })
@@ -124,7 +128,7 @@ router.get("/", middleware.isLoggedIn, function (req, res) {
 
 
 router.get("/leaderboard", function (req, res) {
-
+  login = false
   User.find({}).sort({ score: -1 }).exec(function (err, allUsers) {
     if (err) {
       console.log(err);
