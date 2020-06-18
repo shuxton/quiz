@@ -9,14 +9,15 @@ var Authen = require("../models/auth");
 const { render } = require("ejs");
 
 
-var a = -1, x = 0, cx = 0, imgCount = 0, key = false, mcq = 0, con = 0;
+var a = -1, x = 0, cx = 0, imgCount = 0, key = false, mcq = 0, con = 0, login = false;
 
 
 
 
 
 router.get("/admin", function (req, res) {
-  res.render("quiz/adminauth")
+  if (login) res.render("quiz/admin", { key })
+  else res.render("quiz/adminauth")
 })
 
 
@@ -31,7 +32,7 @@ router.post("/adminlogin", function (req, res) {
 
       if (u == found[0].username && p == found[0].password) {
 
-
+        login = true
         res.render("quiz/admin", { key })
       }
       else res.render("quiz/adminauth")
@@ -64,14 +65,16 @@ router.post("/host", function (req, res) {
 
 
 
-router.post("addQ", function (req, res) {
+router.post("/addQ", function (req, res) {
   Questions.insertMany({ question: req.body.question, op1: req.body.op1, op2: req.body.op2, op3: req.body.op3, op4: req.body.op4, answer: req.body.answer })
+  res.redirect("/quiz/admin")
 })
 
 
 
-router.post("addC", function (req, res) {
+router.post("/addC", function (req, res) {
   Cquestions.insertMany({ question: req.body.question, op1: req.body.op1, op2: req.body.op2, op3: req.body.op3, op4: req.body.op4, answer: req.body.answer })
+  res.redirect("/quiz/admin")
 })
 
 
@@ -106,7 +109,7 @@ router.get("/", middleware.isLoggedIn, function (req, res) {
             if (err) {
               console.log(err);
             } else {
-              res.render("quiz/index", { questions: allQuestions, cquestions: allCquestions, start: found[0].start, end: found[0].end, x, cx, a, imgCount });
+              res.render("index", { questions: allQuestions, cquestions: allCquestions, start: found[0].start, end: found[0].end, x, cx, a, imgCount });
             }
           })
 
@@ -130,7 +133,7 @@ router.get("/leaderboard", function (req, res) {
       Host.find({}).exec(function (err, found) {
         title = found[0].title;
 
-        res.render("quiz/leaderboard", { user: allUsers, title, start: found[0].start, end: found[0].end });
+        res.render("leaderboard", { user: allUsers, title, start: found[0].start, end: found[0].end });
       })
     }
   });
