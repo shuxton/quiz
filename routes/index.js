@@ -3,7 +3,7 @@ var router = express.Router();
 var passport = require("passport");
 var User = require("../models/user");
 var Host = require("../models/admin")
-var title, tag, start, end;
+var title, tag, start, end,url;
 //root route
 
 router.get("/", function (req, res) {
@@ -12,8 +12,9 @@ router.get("/", function (req, res) {
     tag = found[0].tag;
     start = found[0].start;
     end = found[0].end
+    url=found[0].url
   })
-  res.render("landing", { title, tag, start, end });
+  res.render("landing", { title, tag, start, end,url });
 });
 
 // show register form

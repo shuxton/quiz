@@ -88,12 +88,14 @@ router.get("/", middleware.isLoggedIn, function (req, res) {
       mcq = parseInt(found[0].mcq);
       con = parseInt(found[0].con);
 
-      if (mcq - 10 > 0)
-        x = Math.floor(Math.random() * (mcq - 10));
-      else x = 0
-      if (con - 10 > 0)
-        cx = Math.floor(Math.random() * (con - 10));
-      else cx = 0
+      // if (mcq - 10 > 0)
+      //   x = Math.floor(Math.random() * (mcq - 10));
+      // else x = 0
+      // if (con - 10 > 0)
+      //   cx = Math.floor(Math.random() * (con - 10));
+      // else cx = 0
+      x=0
+      cx=0
     })
 
     a = 0;
@@ -110,10 +112,8 @@ router.get("/", middleware.isLoggedIn, function (req, res) {
             if (err) {
               console.log(err);
             } else {
-              console.log("x=" + x)
-              console.log("a=" + a)
-              console.log("cx=" + cx)
-              res.render("index", { questions: allQuestions, cquestions: allCquestions, start: found[0].start, end: found[0].end, x, cx, a, imgCount });
+             
+              res.render("index", {title:found[0].title,tag:found[0].tag,mcq:found[0].mcq,con:found[0].con, questions: allQuestions, cquestions: allCquestions, start: found[0].start, end: found[0].end, x, cx, a, imgCount });
             }
           })
 
@@ -194,7 +194,13 @@ router.post("/ans/:id/:uid/:qno", middleware.isLoggedIn, function (req, res) {
       ).exec(function (err, found) {
         sc = parseInt(found[0].score);
         y = parseInt(found[0].qno) + 1;
-        if (y > 14) y = 14;
+        Host.find(
+          {}
+        ).exec(function (err, found) {
+          mcq = parseInt(found[0].mcq);
+          con = parseInt(found[0].con);
+          if (y >= mcq+con) { a = 0;y=mcq+con-1; }
+        })
         var newvalues = {
           $set: {
             score: sc + 10,
@@ -219,7 +225,7 @@ router.post("/ans/:id/:uid/:qno", middleware.isLoggedIn, function (req, res) {
       ).exec(function (err, found) {
         sc = parseInt(found[0].score);
         y = parseInt(found[0].qno) + 1;
-        if (y > 15) y = 15;
+       
         var newvalues = {
           $set: {
 
@@ -255,30 +261,38 @@ router.post("/:id/:uid/:qno", middleware.isLoggedIn, function (req, res) {
   ).exec(function (err, found) {
     sc = parseInt(found[0].score);
     y = parseInt(found[0].qno) + 1;
-    if (y > 9) { a = 0; y = 10; }
+    Host.find(
+      {}
+    ).exec(function (err, found) {
+      mcq = parseInt(found[0].mcq);
+      con = parseInt(found[0].con);
+      if (y >= mcq) { a = 0;y=mcq-1; }
+    })
+    
     Questions.find({
       _id: req.params.id,
       answer: name,
     }).exec(function (err, f) {
       if (f.length == 0) {
 
+        // var newvalues = {
+        //   $set: {
+        //     score: sc - 1,
+
+        //   }
+        // };
+        // User.updateOne(
+        //   myquery, newvalues, function (err, res) {
+
+        //     console.log(sc);
+        //   }
+        // )
+      } else
+       {
+
         var newvalues = {
           $set: {
-            score: sc - 1,
-
-          }
-        };
-        User.updateOne(
-          myquery, newvalues, function (err, res) {
-
-            console.log(sc);
-          }
-        )
-      } else {
-
-        var newvalues = {
-          $set: {
-            score: sc + 4,
+            score: sc + 5,
 
           }
         };

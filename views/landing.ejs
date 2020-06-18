@@ -10,8 +10,8 @@
   <%}else{%>
   <title>Quiz</title>
   <%}%>
-  
-  <link rel="shortcut icon" type="image/x-icon" href="../public/MainPage.html">
+
+  <link rel="shortcut icon" type="image/x-icon" href="https://img.techpowerup.org/200618/shuxton.png">
 </head>
 
 <body>
@@ -40,7 +40,12 @@
     </div>
   </header>
   <div class="Maincontent">
-    <%if(title!=null && tag!=null){%>
+    <%if(url!=null){%>
+     <br> <img src="<%=url%>" style="width: 320px;"><br>
+    
+      <a type="button" href="/quiz" class="button" value="Input Button">Start now</a>
+      <div>
+    <%}else if(title!=null && tag!=null){%>
       <h1><%=title%></h1>
       <p class="subtext"><%=tag%></p>
       <a type="button" href="/quiz" class="button" value="Input Button">Start now</a>

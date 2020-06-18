@@ -7,6 +7,7 @@ var cquestionsSchema = new mongoose.Schema({
   op3: String,
   op4: String,
   answer: String,
+  placeholder:String,
 });
 
 

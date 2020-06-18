@@ -12,12 +12,12 @@ s=s+43200000
 var n=new Date().getTime();
 
 var dis = e - n;
-if(dis<=0 || n<s)y=15;
+if(dis<=0 || n<s)y=mcq+con;
  %>
 
   <div class="col-sm-12">
     <div class="jumbotron" style="background:transparent !important">
-      <%if(y<10){%>
+      <%if(y<mcq){%>
       <form id="x" action="/quiz/<%=questions[x]._id%>/<%=currentUser._id%>/<%=currentUser.qno%>" method="POST">
 
 
@@ -44,7 +44,7 @@ if(dis<=0 || n<s)y=15;
           Next
         </button>
       </form>
-      <%}else if(y<15  ){cx=cx+a %>
+      <%}else if(y<mcq+con ){cx=cx+a %>
       <div class="caption">
         <h4 style="font-size: 35px;color: goldenrod;"><%=y+1%>)<%= cquestions[cx].question %></h4>
 
@@ -74,6 +74,7 @@ if(dis<=0 || n<s)y=15;
           <%}%>
             </div>
       </center>
+      <center>
       <%if(imgCount<3){%>
       <form id="xx" action="/quiz/img/<%=cquestions[cx]._id%>/<%=currentUser._id%>/<%=currentUser.qno%>" method="POST">
         <button class="btn btn-primary" id="sub1" type="submit" value="0"
@@ -85,7 +86,7 @@ if(dis<=0 || n<s)y=15;
       <%}}%>
       <form id="xx" action="/quiz/ans/<%=cquestions[cx]._id%>/<%=currentUser._id%>/<%=currentUser.qno%>" method="POST">
         <label for="text" style="margin-left: 15px;font-size: 30px;color:royalblue;">Answer-</label>
-        <input class="text" type="text" placeholder="max two lowercase words" name="ans"
+        <input class="text" type="text" placeholder="<%=cquestions[cx].placeholder%>" name="ans"
           style="margin-top: 10px;margin-left: 15px;height: 45px;"><br />
         <button class="btn btn-primary" id="sub" type="submit"
           style="font-size: 30px;background-color: tomato;border-width: 0px;margin-top: 10px;margin-left: 15px;">
@@ -112,6 +113,7 @@ if(dis<=0 || n<s)y=15;
       </a>
 
       <%}%>
+    </center>
     </div>
   </div>
  

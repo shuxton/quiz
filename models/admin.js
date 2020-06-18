@@ -8,6 +8,7 @@ var hostSchema = new mongoose.Schema({
   key:Boolean,
   start: Date,
   end: Date,
+  url: String,
 });
 
 module.exports = mongoose.model("Host", hostSchema);
