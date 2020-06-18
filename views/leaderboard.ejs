@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link rel="shortcut icon" type="image/x-icon" href="../public/K-logo.png">
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+
+  <link rel="stylesheet" href="../public/MainStyle.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <%if(title!=null){%>
+  <title><%=title%> - Leaderboard</title>
+  <%}else{%>
+  <title> Leaderboard</title>
+  <%}%>
+</head>
+
+<body>
+  <header>
+    <%if(title!=null){%>
+  <div class="od"><a id="club" href="/"
+      style="color: dodgerblue;font-style: oblique;font-weight: bold;font-size: 45px;"><%=title%></a><br />
+    <%}else{%>
+    <div class="od"><a id="club" href="/"
+        style="color: dodgerblue;font-style: oblique;font-weight: bold;font-size: 45px;">Quiz</a><br />
+      <%}%>
+      <ul>
+
+        <% if(!currentUser){ %>
+      <li><a href="/login">Sign in</a></li>
+      <li><a href="/register">Sign up</a></li>
+      <%}else{%>
+      <li><a href="#">Signed in as <%=currentUser.username%></a></li>
+      <li><a href="/logout">Logout</a></li>
+      <%}%>
+        <li style="margin-right: 0px;"><a href="/leaderboard" style="margin-right: 0px;">LeaderBoard</a></li>
+      </ul>
+    </div>
+    </div>
+  </header>
+  <center>
+    <div class="row" style="font-size: 30px;font-weight: bolder;color:darkseagreen;margin-top: 30px;">
+      <div class="col sm-4">Rank</div>
+      <div class="col sm-4">Name</div>
+      <div class="col sm-4">Score</div>
+    </div>
+    <%var x=1;user.forEach(function(user){%>
+      <div class="row" style="font-size: 25px;font-weight: normal;color: darkkhaki;">
+        <div class=" col sm-4"><%=x%></div>
+        <div class="col sm-4"><%=user.username%></div>
+        <div class="col sm-4"><%=user.score%></div>
+      </div>
+      <%x=x+1})%>
+      </center>
+
+      <%- include('./partials/footer') %>

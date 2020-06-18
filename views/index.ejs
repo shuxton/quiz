@@ -1,0 +1,140 @@
+<%- include("./partials/header")%>
+
+<div class="row">
+
+  <%var y=currentUser.qno;
+x=x+a;
+var count=0;
+var e = new Date(end).getTime();
+e=e+43200000
+var s = new Date(start).getTime();
+s=s+43200000
+var n=new Date().getTime();
+
+var dis = e - n;
+if(dis<=0 || n<s)y=15;
+ %>
+
+  <div class="col-sm-12">
+    <div class="jumbotron" style="background:transparent !important">
+      <%if(y<10){%>
+      <form id="x" action="/quiz/<%=questions[x]._id%>/<%=currentUser._id%>/<%=currentUser.qno%>" method="POST">
+
+
+        <div class="caption">
+          <h4 style="font-size: 35px;color: goldenrod;"><%=y+1%>)<%= questions[x].question %></h4>
+
+
+          <p id="qtime" style="font-size: 25px;color: crimson;"></p>
+        </div>
+        <div style="color:lightgreen">
+          <input type="radio" name="op" value="<%= questions[x].op1 %>" />
+          <label id="<%=x%>op1" for="op1" style="font-size: 25px;"><%= questions[x].op1 %></label><br />
+          <input type="radio" name="op" value="<%= questions[x].op2 %>" />
+          <label id="<%=x%>op2" for="op2" style="font-size: 25px;"><%= questions[x].op2 %></label><br />
+          <input type="radio" name="op" value="<%= questions[x].op3 %>" />
+          <label id="<%=x%>op3" for="op3" style="font-size: 25px;"><%= questions[x].op3 %></label><br />
+          <input type="radio" name="op" value="<%= questions[x].op4 %>" />
+          <label id="<%=x%>op4" for="op4" style="font-size: 25px;">
+            <%= questions[x].op4 %></label>
+
+          <br /></div>
+        <button class="btn btn-primary" id="sub" type="submit"
+          style="font-size: 30px;background-color: tomato;border-width: 0px;">
+          Next
+        </button>
+      </form>
+      <%}else if(y<15  ){cx=cx+a %>
+      <div class="caption">
+        <h4 style="font-size: 35px;color: goldenrod;"><%=y+1%>)<%= cquestions[cx].question %></h4>
+
+
+        <p id="qtime" style="font-size: 25px;color: crimson;"></p>
+      </div>
+      <center>
+
+        <div class="row text-center" style="display:flex; flex-wrap: wrap;">
+          <%if(cquestions[cx].op1){for(var i=0;i<=imgCount;i++){%>
+          <div class="col-md-3 col-sm-6">
+            <div class="thumbnail" style="width: 200px;">
+              <%if(i==0){%>
+              <img src="<%=cquestions[cx].op1%>" style="height: 200px;padding: 10px;">
+              <%}%>
+              <%if(i==1){%>
+              <img src="<%=cquestions[cx].op2%>" style="height: 200px;padding: 10px;">
+              <%}%>
+                <%if(i==2){%>
+              <img src="<%=cquestions[cx].op3%>" style="height: 200px;padding: 10px;">
+              <%}%>
+                  <%if(i==3){%>
+              <img src="<%=cquestions[cx].op4%>" style="height: 200px;padding: 10px;">
+              <%}%>
+            </div>
+          </div>
+          <%}%>
+            </div>
+      </center>
+      <%if(imgCount<3){%>
+      <form id="xx" action="/quiz/img/<%=cquestions[cx]._id%>/<%=currentUser._id%>/<%=currentUser.qno%>" method="POST">
+        <button class="btn btn-primary" id="sub1" type="submit" value="0"
+          style="font-size: 30px;background-color:firebrick;border-width: 0px;margin-top: 10px;margin-left: 15px;">
+          Next Clue
+        </button>
+
+      </form>
+      <%}}%>
+      <form id="xx" action="/quiz/ans/<%=cquestions[cx]._id%>/<%=currentUser._id%>/<%=currentUser.qno%>" method="POST">
+        <label for="text" style="margin-left: 15px;font-size: 30px;color:royalblue;">Answer-</label>
+        <input class="text" type="text" placeholder="max two lowercase words" name="ans"
+          style="margin-top: 10px;margin-left: 15px;height: 45px;"><br />
+        <button class="btn btn-primary" id="sub" type="submit"
+          style="font-size: 30px;background-color: tomato;border-width: 0px;margin-top: 10px;margin-left: 15px;">
+          Submit
+        </button>
+      </form>
+
+      <%}else if(s>n){%>
+
+      <p style="font-size: 50px;color: goldenrod;">Come back when the contest has started :)</p><br />
+
+
+      <a class="btn btn-primary" id="sub" href="/" style="font-size: 30px;background-color: tomato;border-width: 0px;">
+        Home Page
+      </a>
+
+      <%}else {%>
+      <p style="font-size: 50px;color: goldenrod;">Hope you had fun!</p><br />
+      <p style="font-size: 50px;color: lightgreen;">Your score is <%=currentUser.score%></p><br />
+
+      <a class="btn btn-primary" id="sub" href="/quiz/leaderboard"
+        style="font-size: 30px;background-color: tomato;border-width: 0px;">
+        Leaderboard
+      </a>
+
+      <%}%>
+    </div>
+  </div>
+ 
+</div>
+
+        
+         
+<script>
+  window.onload = function () {
+    if (!window.location.hash) {
+      window.location = window.location + '#loaded';
+      window.location.reload();
+    }
+  }
+
+  var cur = 30;
+  var qt = setInterval(function () {
+    tleft = cur;
+    document.getElementById("qtime").innerHTML = "Time Left:" + tleft;
+    if (tleft == 0) { document.getElementById("sub").click(); }
+    cur = cur - 1;
+  }, 1000)
+
+</script>
+
+          <%- include('./partials/footer') %>
