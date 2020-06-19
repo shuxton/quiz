@@ -180,8 +180,6 @@ router.post("/img/:id/:uid/:qno", middleware.isLoggedIn, function (req, res) {
 router.post("/ans/:id/:uid/:qno", middleware.isLoggedIn, function (req, res) {
   a = a + 1;
   imgCount = 0;
-  if (a == 15) a = -1;
-  console.log(a)
   var myquery = { _id: req.params.uid };
   var sc, y;
 
@@ -203,7 +201,7 @@ router.post("/ans/:id/:uid/:qno", middleware.isLoggedIn, function (req, res) {
         })
         var newvalues = {
           $set: {
-            score: sc + 10,
+            score: sc + 15,
             qno: y
 
 
@@ -292,7 +290,7 @@ router.post("/:id/:uid/:qno", middleware.isLoggedIn, function (req, res) {
 
         var newvalues = {
           $set: {
-            score: sc + 5,
+            score: sc + 10,
 
           }
         };
