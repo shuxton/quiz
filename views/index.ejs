@@ -18,25 +18,25 @@ if(dis<=0 || n<s)y=mcq+con;
   <div class="col-sm-12">
     <div class="jumbotron" style="background:transparent !important">
       <%if(y<mcq){%>
-      <form id="x" action="/quiz/<%=questions[x]._id%>/<%=currentUser._id%>/<%=currentUser.qno%>" method="POST">
+      <form id="x" action="/quiz/<%=questions[y]._id%>/<%=currentUser._id%>/<%=currentUser.qno%>" method="POST">
 
 
         <div class="caption">
-          <h4 style="font-size: 35px;color: goldenrod;"><%=y+1%>)<%= questions[x].question %></h4>
+          <h4 style="font-size: 35px;color: goldenrod;"><%=y+1%>)<%= questions[y].question %></h4>
           
 
           <p id="qtime" style="font-size: 20px;color: crimson;"></p>
         </div>
         <div style="color:lightgreen">
-          <input type="radio" name="op" value="<%= questions[x].op1 %>" />
-          <label id="<%=x%>op1" for="op1" style="font-size: 20px;"><%= questions[x].op1 %></label><br />
-          <input type="radio" name="op" value="<%= questions[x].op2 %>" />
-          <label id="<%=x%>op2" for="op2" style="font-size: 20px;"><%= questions[x].op2 %></label><br />
-          <input type="radio" name="op" value="<%= questions[x].op3 %>" />
-          <label id="<%=x%>op3" for="op3" style="font-size: 20px;"><%= questions[x].op3 %></label><br />
-          <input type="radio" name="op" value="<%= questions[x].op4 %>" />
+          <input type="radio" name="op" value="<%= questions[y].op1 %>" />
+          <label id="<%=x%>op1" for="op1" style="font-size: 20px;"><%= questions[y].op1 %></label><br />
+          <input type="radio" name="op" value="<%= questions[y].op2 %>" />
+          <label id="<%=x%>op2" for="op2" style="font-size: 20px;"><%= questions[y].op2 %></label><br />
+          <input type="radio" name="op" value="<%= questions[y].op3 %>" />
+          <label id="<%=x%>op3" for="op3" style="font-size: 20px;"><%= questions[y].op3 %></label><br />
+          <input type="radio" name="op" value="<%= questions[y].op4 %>" />
           <label id="<%=x%>op4" for="op4" style="font-size: 20px;">
-            <%= questions[x].op4 %></label>
+            <%= questions[y].op4 %></label>
 
           <br /></div>
         <button class="btn btn-primary" id="sub" type="submit"
@@ -46,7 +46,7 @@ if(dis<=0 || n<s)y=mcq+con;
       </form>
       <%}else if(y<mcq+con ){cx=cx+a %>
       <div class="caption">
-        <h4 style="font-size: 35px;color: goldenrod;"><%=y+1%>)<%= cquestions[cx].question %></h4>
+        <h4 style="font-size: 35px;color: goldenrod;"><%=y+1%>)<%= cquestions[y-mcq].question %></h4>
 
 
         <p id="qtime" style="font-size: 20px;color: crimson;"></p>
@@ -54,20 +54,20 @@ if(dis<=0 || n<s)y=mcq+con;
       <center>
 
         <div class="row text-center" style="display:flex; flex-wrap: wrap;">
-          <%if(cquestions[cx].op1){for(var i=0;i<=imgCount;i++){%>
+          <%if(cquestions[y-mcq].op1){for(var i=0;i<=imgCount;i++){%>
           <div class="col-md-3 col-sm-6">
             <div class="thumbnail" style="width: 200px;">
               <%if(i==0){%>
-              <img src="<%=cquestions[cx].op1%>" style="height: 200px;padding: 10px;">
+              <img src="<%=cquestions[y-mcq].op1%>" style="height: 200px;padding: 10px;">
               <%}%>
               <%if(i==1){%>
-              <img src="<%=cquestions[cx].op2%>" style="height: 200px;padding: 10px;">
+              <img src="<%=cquestions[y-mcq].op2%>" style="height: 200px;padding: 10px;">
               <%}%>
                 <%if(i==2){%>
-              <img src="<%=cquestions[cx].op3%>" style="height: 200px;padding: 10px;">
+              <img src="<%=cquestions[y-mcq].op3%>" style="height: 200px;padding: 10px;">
               <%}%>
                   <%if(i==3){%>
-              <img src="<%=cquestions[cx].op4%>" style="height: 200px;padding: 10px;">
+              <img src="<%=cquestions[y-mcq].op4%>" style="height: 200px;padding: 10px;">
               <%}%>
             </div>
           </div>
@@ -76,7 +76,7 @@ if(dis<=0 || n<s)y=mcq+con;
       </center>
       <center>
       <%if(imgCount<3){%>
-      <form id="xx" action="/quiz/img/<%=cquestions[cx]._id%>/<%=currentUser._id%>/<%=currentUser.qno%>" method="POST">
+      <form id="xx" action="/quiz/img/<%=cquestions[y-mcq]._id%>/<%=currentUser._id%>/<%=currentUser.qno%>" method="POST">
         <button class="btn btn-primary" id="sub1" type="submit" value="0"
           style="font-size: 30px;background-color:firebrick;border-width: 0px;margin-top: 10px;margin-left: 15px;">
           Next Clue
@@ -84,9 +84,9 @@ if(dis<=0 || n<s)y=mcq+con;
 
       </form>
       <%}}%>
-      <form id="xx" action="/quiz/ans/<%=cquestions[cx]._id%>/<%=currentUser._id%>/<%=currentUser.qno%>" method="POST">
+      <form id="xx" action="/quiz/ans/<%=cquestions[y-mcq]._id%>/<%=currentUser._id%>/<%=currentUser.qno%>" method="POST">
         <label for="text" style="margin-left: 15px;font-size: 30px;color:royalblue;">Answer-</label>
-        <input class="text" type="text" placeholder="<%=cquestions[cx].placeholder%>" name="ans"
+        <input class="text" type="text" placeholder="<%=cquestions[y-mcq].placeholder%>" name="ans"
           style="margin-top: 10px;margin-left: 15px;height: 45px;"><br />
         <button class="btn btn-primary" id="sub" type="submit"
           style="font-size: 30px;background-color: tomato;border-width: 0px;margin-top: 10px;margin-left: 15px;">
