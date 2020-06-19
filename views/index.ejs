@@ -6,9 +6,9 @@
 x=x+a;
 var count=0;
 var e = new Date(end).getTime();
-e=e+43200000
+e=e+(et*3600000)
 var s = new Date(start).getTime();
-s=s+43200000
+s=s+(st*3600000)
 var n=new Date().getTime();
 
 var dis = e - n;
@@ -102,7 +102,15 @@ if(dis<=0 || n<s)y=mcq+con;
       <a class="btn btn-primary" id="sub" href="/" style="font-size: 30px;background-color: tomato;border-width: 0px;">
         Home Page
       </a>
+      <%}else if(dis<=0){%>
 
+        <p style="font-size: 50px;color: goldenrod;">The contest has ended already :(</p><br />
+        <p style="font-size: 50px;color: lightgreen;"></p><br />
+  
+        <a class="btn btn-primary" id="sub" href="/quiz/leaderboard"
+          style="font-size: 30px;background-color: tomato;border-width: 0px;">
+          Leaderboard
+        </a>
       <%}else {%>
       <p style="font-size: 50px;color: goldenrod;">Hope you had fun!</p><br />
       <p style="font-size: 50px;color: lightgreen;">Your score is <%=currentUser.score%></p><br />

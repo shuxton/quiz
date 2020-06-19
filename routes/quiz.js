@@ -9,7 +9,7 @@ var Authen = require("../models/auth");
 const { render } = require("ejs");
 
 
-var a = -1, x = 0, cx = 0, imgCount = 0, key = false, mcq = 0, con = 0, login = false;
+var a = -1, x = 0, cx = 0, imgCount = 0, key = false, mcq = 0, con = 0, login = false,url,st,et;
 
 
 
@@ -87,7 +87,7 @@ router.get("/", middleware.isLoggedIn, function (req, res) {
     ).exec(function (err, found) {
       mcq = parseInt(found[0].mcq);
       con = parseInt(found[0].con);
-
+      
       // if (mcq - 10 > 0)
       //   x = Math.floor(Math.random() * (mcq - 10));
       // else x = 0
@@ -112,8 +112,10 @@ router.get("/", middleware.isLoggedIn, function (req, res) {
             if (err) {
               console.log(err);
             } else {
-             
-              res.render("index", {title:found[0].title,tag:found[0].tag,mcq:found[0].mcq,con:found[0].con, questions: allQuestions, cquestions: allCquestions, start: found[0].start, end: found[0].end, x, cx, a, imgCount });
+              url= found[0].url
+st=found[0].st
+et=found[0].et
+              res.render("index", {st,et,url,title:found[0].title,tag:found[0].tag,mcq:found[0].mcq,con:found[0].con, questions: allQuestions, cquestions: allCquestions, start: found[0].start, end: found[0].end, x, cx, a, imgCount });
             }
           })
 
@@ -136,8 +138,10 @@ router.get("/leaderboard", function (req, res) {
       var title;
       Host.find({}).exec(function (err, found) {
         title = found[0].title;
-
-        res.render("leaderboard", { user: allUsers, title, start: found[0].start, end: found[0].end });
+        url=found[0].url;
+        st=found[0].st
+et=found[0].et
+        res.render("leaderboard", { st,et,url,user: allUsers, title, start: found[0].start, end: found[0].end });
       })
     }
   });

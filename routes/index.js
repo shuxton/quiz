@@ -3,7 +3,7 @@ var router = express.Router();
 var passport = require("passport");
 var User = require("../models/user");
 var Host = require("../models/admin")
-var title, tag, start, end,url;
+var title, tag, start, end,url,st,et;
 //root route
 
 router.get("/", function (req, res) {
@@ -13,8 +13,10 @@ router.get("/", function (req, res) {
     start = found[0].start;
     end = found[0].end
     url=found[0].url
+    st=found[0].st
+et=found[0].et
   })
-  res.render("landing", { title, tag, start, end,url });
+  res.render("landing", { st,et,title, tag, start, end,url });
 });
 
 // show register form
@@ -23,8 +25,11 @@ router.get("/register", function (req, res) {
     title = found[0].title;
     start = found[0].start;
     end = found[0].end
+    url=found[0].url
+    st=found[0].st
+et=found[0].et
   })
-  res.render("register", { title, start, end });
+  res.render("register", { st,et,title, start, end ,url});
 });
 
 //handle sign up logic
@@ -45,11 +50,15 @@ router.post("/register", function (req, res) {
 //show login form
 router.get("/login", function (req, res) {
   Host.find({}).exec(function (err, found) {
+    if(err)console.log(err)
     title = found[0].title;
     start = found[0].start;
     end = found[0].end
+    url=found[0].url
+    st=found[0].st
+et=found[0].et
   })
-  res.render("login", { title, start, end });
+  res.render("login", { et,st,title, start, end ,url});
 });
 
 //handling login logic
