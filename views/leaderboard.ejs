@@ -19,7 +19,7 @@
 <body>
   <header>
     <%if(url!=null){%><div class="od"><a id="club" href="/">
-      <img src="<%=url%>" style="width: 250px;"></a><br>
+      <img src="<%=url%>" style="width: 150px;"></a><br>
     <%}else if(title!=null){%>
   <div class="od"><a id="club" href="/"
       style="color: dodgerblue;font-style: oblique;font-weight: bold;font-size: 45px;"><%=title%></a><br />
@@ -42,18 +42,34 @@
     </div>
   </header><br>
   <center>
-    <div class="row" style="font-size: 30px;font-weight: bolder;color:darkseagreen;margin-top: 30px;">
-      <div class="col sm-4">Rank</div>
-      <div class="col sm-4">Name</div>
-      <div class="col sm-4">Score</div>
+   <br><br> <div >
+
+      <table class='table '>
+
+          <thead >
+
+               <tr style="color:thistle;align-items: center;">
+                <center>
+                   <th style="align-items: center;";">Rank</th>
+
+                   <th style="align-items: center;";">Name</th>
+
+                   <th style="align-items: center;";">Score</th>
+                   </center>
+               </tr>
+              </thead>
+               <%var x=1;user.forEach(function(user){%>
+                <tr style="color: cadetblue;align-items: center;">
+                  <center>
+                  <td ><%=x%></td>
+                  <td><%=user.username%></td>
+                  <td><%=user.score%></td>
+                  </center>
+                </tr>
+                <%x=x+1})%>
+      </table>
     </div>
-    <%var x=1;user.forEach(function(user){%>
-      <div class="row" style="font-size: 25px;font-weight: normal;color: darkkhaki;">
-        <div class=" col sm-4"><%=x%></div>
-        <div class="col sm-4"><%=user.username%></div>
-        <div class="col sm-4"><%=user.score%></div>
-      </div>
-      <%x=x+1})%>
+    
       </center>
 
       <%- include('./partials/footer') %>

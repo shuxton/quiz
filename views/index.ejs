@@ -22,7 +22,7 @@ if(dis<=0 || n<s)y=mcq+con;
 
 
         <div class="caption">
-         <br> <h4 style="font-size: 35px;color: goldenrod;"><%=y+1%>)<%= questions[y].question %></h4>
+         <br> <h4 style="font-size: 25px;color: goldenrod;"><%=y+1%>)<%= questions[y].question %></h4>
           
 
           <p id="qtime" style="font-size: 20px;color: crimson;"></p>
@@ -46,17 +46,17 @@ if(dis<=0 || n<s)y=mcq+con;
       </form>
       <%}else if(y<mcq+con ){cx=cx+a %>
       <br><div class="caption">
-        <h4 style="font-size: 35px;color: goldenrod;"><%=y+1%>)<%= cquestions[y-mcq].question %></h4>
-        <h4 style="font-size: 25px;color: coral;">Who said this?</h4>
+        <h4 style="font-size: 25px;color: goldenrod;"><%=y+1%>)<%= cquestions[y-mcq].question %></h4>
+       
 
         <p id="qtime" style="font-size: 20px;color: crimson;"></p>
       </div>
       <center>
-
+      
         <div class="row text-center" style="display:flex; flex-wrap: wrap;">
-          <%if(cquestions[y-mcq].op1){for(var i=0;i<=imgCount;i++){%>
+          <%if(cquestions[y-mcq].op1){for(var i=0;i<=cquestions[y-mcq].img;i++){%>
           <div class="col-md-3 col-sm-6">
-            <div class="thumbnail" style="width: 200px;">
+            <div class="thumbnail" style="width: 200px;border: 10px;">
               <%if(i==0){%>
               <img src="<%=cquestions[y-mcq].op1%>" style="height: 200px;padding: 10px;">
               <%}%>
@@ -75,7 +75,7 @@ if(dis<=0 || n<s)y=mcq+con;
             </div>
       </center>
       <center>
-      <%if(imgCount<3){%>
+      <!-- <%if(currentUser.imgCount<cquestions[y-mcq].img){%>
       <form id="xx" action="/quiz/img/<%=cquestions[y-mcq]._id%>/<%=currentUser._id%>/<%=currentUser.qno%>" method="POST">
         <button class="btn btn-primary" id="sub1" type="submit" value="0"
           style="font-size: 30px;background-color:firebrick;border-width: 0px;margin-top: 10px;margin-left: 15px;">
@@ -83,7 +83,7 @@ if(dis<=0 || n<s)y=mcq+con;
         </button>
 
       </form>
-      <%}}%>
+      <%}}%> -->
       <form id="xx" action="/quiz/ans/<%=cquestions[y-mcq]._id%>/<%=currentUser._id%>/<%=currentUser.qno%>" method="POST">
         <label for="text" style="margin-left: 15px;font-size: 30px;color:royalblue;">Answer-</label>
         <input class="text" type="text" placeholder="<%=cquestions[y-mcq].placeholder%>" name="ans"
@@ -130,14 +130,32 @@ if(dis<=0 || n<s)y=mcq+con;
         
          
 <script>
+    
   window.onload = function () {
     if (!window.location.hash) {
       window.location = window.location + '#loaded';
       window.location.reload();
     }
+    var h4= document.getElementsByTagName('h4');
+    for (var i = 0; i < h4.length; i++) {
+                    disableSelection(h4[i]);
+                }
+    var labels = document.getElementsByTagName('label');
+                for (var i = 0; i < labels.length; i++) {
+                    disableSelection(labels[i]);
+                }
+                function disableSelection(element) {
+                if (typeof element.onselectstart != 'undefined') {
+                    element.onselectstart = function() { return false; };
+                } else if (typeof element.style.MozUserSelect != 'undefined') {
+                    element.style.MozUserSelect = 'none';
+                } else {
+                    element.onmousedown = function() { return false; };
+                }
   }
+}
 
-  var cur = 30;
+  var cur = 600;
   var qt = setInterval(function () {
     tleft = cur;
     document.getElementById("qtime").innerHTML = "Time Left:" + tleft;

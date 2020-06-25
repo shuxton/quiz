@@ -9,7 +9,7 @@ var Authen = require("../models/auth");
 const { render } = require("ejs");
 
 
-var a = -1, x = 0, cx = 0, imgCount = 0, key = false, mcq = 0, con = 0, login = false,url,st,et;
+var a = -1, x = 0, cx = 0, key = false, mcq = 0, con = 0, login = false,url,st,et;
 
 
 
@@ -115,7 +115,7 @@ router.get("/", middleware.isLoggedIn, function (req, res) {
               url= found[0].url
 st=found[0].st
 et=found[0].et
-              res.render("index", {st,et,url,title:found[0].title,tag:found[0].tag,mcq:found[0].mcq,con:found[0].con, questions: allQuestions, cquestions: allCquestions, start: found[0].start, end: found[0].end, x, cx, a, imgCount });
+              res.render("index", {st,et,url,title:found[0].title,tag:found[0].tag,mcq:found[0].mcq,con:found[0].con, questions: allQuestions, cquestions: allCquestions, start: found[0].start, end: found[0].end, x, cx, a});
             }
           })
 
@@ -151,8 +151,10 @@ et=found[0].et
 
 
 router.post("/img/:id/:uid/:qno", middleware.isLoggedIn, function (req, res) {
-  imgCount++;
-  if (imgCount <= 3) {
+  var img,imgCount;
+
+
+ 
     var myquery = { _id: req.params.uid };
     var sc, y;
 
@@ -160,21 +162,30 @@ router.post("/img/:id/:uid/:qno", middleware.isLoggedIn, function (req, res) {
       myquery
     ).exec(function (err, found) {
       sc = parseInt(found[0].score);
-      var newvalues = {
-        $set: {
-          score: sc - 1,
-
-        }
-      };
-      User.updateOne(
-        myquery, newvalues, function (err, res) {
-
-          console.log(sc);
-        }
-      )
+      imgCount=parseInt(found[0].imgCount)
+      imgCount++;
+      Cquestions.find({_id: req.params.id}).exec(function(err,cfound){
+       img= parseInt(cfound[0].img)
+       if(imgCount<=img){
+        var newvalues = {
+          $set: {
+            score: sc - 1,
+            imgCount:imgCount
+          }
+        };
+        User.updateOne(
+          myquery, newvalues, function (err, res) {
+  
+            console.log(sc);
+          }
+        )
+   
+       }
+     
+  
+      })
     })
-  }
-  else imgCount = 3;
+
 
   res.redirect("/quiz");
 
@@ -183,7 +194,7 @@ router.post("/img/:id/:uid/:qno", middleware.isLoggedIn, function (req, res) {
 
 router.post("/ans/:id/:uid/:qno", middleware.isLoggedIn, function (req, res) {
   a = a + 1;
-  imgCount = 0;
+
   var myquery = { _id: req.params.uid };
   var sc, y;
 
@@ -205,9 +216,9 @@ router.post("/ans/:id/:uid/:qno", middleware.isLoggedIn, function (req, res) {
         })
         var newvalues = {
           $set: {
-            score: sc + 15,
-            qno: y
-
+            score: sc + 5,
+            qno: y,
+            imgCount:0
 
           }
         };
@@ -231,8 +242,8 @@ router.post("/ans/:id/:uid/:qno", middleware.isLoggedIn, function (req, res) {
         var newvalues = {
           $set: {
 
-            qno: y
-
+            qno: y,
+            imgCount:0
 
           }
         };
@@ -294,7 +305,7 @@ router.post("/:id/:uid/:qno", middleware.isLoggedIn, function (req, res) {
 
         var newvalues = {
           $set: {
-            score: sc + 10,
+            score: sc + 5,
 
           }
         };

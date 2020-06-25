@@ -19,10 +19,10 @@
 
 </head>
 
-<body style="background-color:black">
+<body style="background-color:#152b68">
   <header>
     <%if(url!=null){%><div class="od"><a id="club" href="/">
-      <img src="<%=url%>" style="width: 250px;"></a><br>
+      <img src="<%=url%>" style="width: 150px;"></a><br>
     <%}else if(title!=null){%>
     <div class="od"><a id="club" href="/"
         style="color: dodgerblue;font-style: oblique;font-weight: bold;font-size: 45px;"><%=title%></a><br />
@@ -30,17 +30,17 @@
       <div class="od"><a id="club" href="/"
           style="color: dodgerblue;font-style: oblique;font-weight: bold;font-size: 45px;">Quiz</a><br />
         <%}%>
-      <ul>
+    <br>    <ul>
 
-        <% if(!currentUser){ %>
-        <li><a href="/login">Log in</a></li>
-        <li><a href="/register">Sign up</a></li>
-        <%}else{%>
-        <li><a href="#">Signed in as <%=currentUser.username%></a></li>
-        <li><a href="/logout">Logout</a></li>
-        <%}%>
-      <li style="margin-right: 0px;"><a href="/quiz/leaderboard" style="margin-right: 0px;">LeaderBoard</a></li>
-      </ul><br>
+      <% if(!currentUser){ %>
+    <li><a href="/login">Log in</a></li>
+    <li><a href="/register">Sign up</a></li>
+    <%}else{%>
+    <li><a href="#">Signed in as <%=currentUser.username%></a></li>
+    <li><a href="/logout">Logout</a></li>
+    <%}%>
+     
+    </ul><p style="color:lightgreen ;">Current Score <%=currentUser.score%></p><br>
     </div>
     </div>
   </header><br>

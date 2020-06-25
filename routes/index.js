@@ -34,7 +34,7 @@ et=found[0].et
 
 //handle sign up logic
 router.post("/register", function (req, res) {
-  var newUser = new User({ username: req.body.username, qno: 0, score: 0});
+  var newUser = new User({ username: req.body.username, qno: 0, score: 0,imgCount:0});
   User.register(newUser, req.body.password, function (err, user) {
     if (err) {
       console.log(err);
