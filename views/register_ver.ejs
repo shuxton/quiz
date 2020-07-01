@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+
+<%if(!mail){%>
+    <head>
+        <title>Not verified</title>
+    </head>
+    <body>
+        <h1>Verification link has been sent to the specified email address</h1>
+        <h2>Check your inbox and click on the link to activate your account </h2>
+        <a href="/login">Login Page</a>
+    </body>
+<%}else{%>
+    <head>
+        <title>Verification</title>
+    </head>
+    <body>
+        <h1>Verification successfull</h1>
+        <h2>You can jump into the quiz</h2>
+        <a href="/login">Start</a>
+    </body>
+    <%}%>
+</html>

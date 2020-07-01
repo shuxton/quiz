@@ -100,6 +100,13 @@ router.get("/", middleware.isLoggedIn, function (req, res) {
 
     a = 0;
   }
+  User.find({_id:req.query.id},function(err,f){
+    console.log(f[0])
+    console.log(req.query.id)
+    if (err) {
+      console.log(err);
+    } else if(f.length!=0 && f[0].ver){
+     
   Questions.find({}, function (err, allQuestions) {
     if (err) {
       console.log(err);
@@ -118,11 +125,14 @@ et=found[0].et
               res.render("index", {st,et,url,title:found[0].title,tag:found[0].tag,mcq:found[0].mcq,con:found[0].con, questions: allQuestions, cquestions: allCquestions, start: found[0].start, end: found[0].end, x, cx, a});
             }
           })
+       
 
         }
       })
     }
-  });
+  })}
+  else res.render("userexists",{home:true})
+});
 
 });
 

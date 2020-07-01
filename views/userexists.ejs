@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <%if(!home){%>
+    <head>
+        <title>Sign up error</title>
+    </head>
+    <body>
+        <h1>The entered email address is already registered with us</h1>
+        <h2>Check your inbox to activate the account or try using a differnt email</h2>
+        <a href="/register">SignUp Page</a>
+    </body>
+
+<%}else{%>
+    <head>
+        <title>Verification error</title>
+    </head>
+    <body>
+        <h1>Your account is not verified</h1>
+        <h2>Check your inbox to activate the account</h2>
+        <a href="/login">Login Page</a>
+    </body>
+    <%}%>
+</html>

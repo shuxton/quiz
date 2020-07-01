@@ -6,7 +6,9 @@ var UserSchema = new mongoose.Schema({
   password: String,
   score: Number,
   qno: Number,
-  imgCount:Number
+  imgCount:Number,
+  ver:Boolean,
+  email:String,
 });
 
 UserSchema.plugin(passportLocalMongoose);

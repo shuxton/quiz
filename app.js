@@ -21,7 +21,7 @@ mongoose.set("useFindAndModify", false);
 mongoose.set("useCreateIndex", true);
 mongoose.set("useUnifiedTopology", true);
 mongoose.connect(
-  "mongodb+srv://snj:karatepotato@cluster0-ndqer.mongodb.net/test?retryWrites=true&w=majority"
+  process.env.db_key
 );
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set("view engine", "ejs");

@@ -58,7 +58,7 @@
                    </center>
                </tr>
               </thead>
-               <%var x=1;user.forEach(function(user){%>
+               <%var x=1;user.forEach(function(user){ if(user.ver){%>
                 <tr style="color: cadetblue;align-items: center;">
                   <center>
                   <td ><%=x%></td>
@@ -66,7 +66,7 @@
                   <td><%=user.score%></td>
                   </center>
                 </tr>
-                <%x=x+1})%>
+                <%x=x+1}})%>
       </table>
     </div>
     
