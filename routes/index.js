@@ -10,7 +10,7 @@ var title, tag, start, end,url,st,et;
 //root route
 
 var smtpTransport = nodemailer.createTransport("SMTP",{
-  service: "gmail",
+  service: process.env.service,
   auth: {
       user: process.env.email,
       pass: process.env.pass
