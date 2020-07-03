@@ -4,20 +4,28 @@
     <head>
         <title>Sign up error</title>
     </head>
-    <body>
+    <center>
+        <body style="background-color: rgb(13, 155, 84); ">
+            <div style="padding-top: 10%;">
         <h1>The entered email address is already registered with us</h1>
         <h2>Check your inbox to activate the account or try using a differnt email</h2>
-        <a href="/register">SignUp Page</a>
-    </body>
+        <button style="padding: 10px;background-color: darkorange;" ><a href="/register"><b>SignUp Page</b></a></button>
+    </div>
+</body>
+</center>
 
 <%}else{%>
     <head>
         <title>Verification error</title>
     </head>
-    <body>
+    <center>
+    <body style="background-color: rgb(13, 155, 84); ">
+        <div style="padding-top: 10%;">
         <h1>Your account is not verified</h1>
         <h2>Check your inbox to activate the account</h2>
-        <a href="/login">Login Page</a>
+        <button style="padding: 10px;background-color: darkorange;" ><a href="/login"><b>Login Page</b></a></button>
+    </div>
     </body>
+</center>
     <%}%>
 </html>

@@ -21,7 +21,7 @@ mongoose.set("useFindAndModify", false);
 mongoose.set("useCreateIndex", true);
 mongoose.set("useUnifiedTopology", true);
 mongoose.connect(
-  process.env.db_key
+process.env.db_key
 );
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set("view engine", "ejs");

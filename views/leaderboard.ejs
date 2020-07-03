@@ -33,7 +33,7 @@
       <li><a href="/login">Log in</a></li>
       <li><a href="/register">Sign up</a></li>
       <%}else{%>
-      <li><a href="#">Signed in as <%=currentUser.username%></a></li>
+      <li><a href="#">Signed in as <%=currentUser.email%></a></li>
       <li><a href="/logout">Logout</a></li>
       <%}%>
         <li style="margin-right: 0px;"><a href="/quiz/leaderboard" style="margin-right: 0px;">LeaderBoard</a></li>
@@ -62,7 +62,7 @@
                 <tr style="color: cadetblue;align-items: center;">
                   <center>
                   <td ><%=x%></td>
-                  <td><%=user.username%></td>
+                  <td><%=user.email%></td>
                   <td><%=user.score%></td>
                   </center>
                 </tr>

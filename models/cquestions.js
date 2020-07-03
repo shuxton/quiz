@@ -6,7 +6,9 @@ var cquestionsSchema = new mongoose.Schema({
   op2: String,
   op3: String,
   op4: String,
-  answer: String,
+  answer1: String,
+  answe2:String,
+  answer3:String,
   placeholder:String,
   img:Number
 });

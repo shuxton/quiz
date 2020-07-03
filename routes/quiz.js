@@ -209,9 +209,11 @@ router.post("/ans/:id/:uid/:qno", middleware.isLoggedIn, function (req, res) {
   var sc, y;
 
   Cquestions.find({ _id: req.params.id }).exec(function (err, found) {
-    var ans = found[0].answer
+    var ans1 = found[0].answer1
+    var ans2 = found[0].answer2
+    var ans3 = found[0].answer3
 
-    if (ans.toUpperCase() === req.body.ans.toUpperCase()) {
+    if (ans1.toUpperCase() === req.body.ans.toUpperCase() || ans2.toUpperCase() === req.body.ans.toUpperCase() ||ans3.toUpperCase() === req.body.ans.toUpperCase()) {
       User.find(
         myquery
       ).exec(function (err, found) {

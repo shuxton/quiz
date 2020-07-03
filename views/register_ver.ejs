@@ -5,19 +5,27 @@
     <head>
         <title>Not verified</title>
     </head>
-    <body>
+    <center>
+        <body style="background-color: rgb(13, 155, 84); ">
+            <div style="padding-top: 10%;">
         <h1>Verification link has been sent to the specified email address</h1>
         <h2>Check your inbox and click on the link to activate your account </h2>
-        <a href="/login">Login Page</a>
+        <button style="padding: 10px;background-color: darkorange;" ><a href="/login"><b>Login Page</b></a></button>
+    </div>
     </body>
+</center>
 <%}else{%>
     <head>
         <title>Verification</title>
     </head>
-    <body>
-        <h1>Verification successfull</h1>
-        <h2>You can jump into the quiz</h2>
-        <a href="/login">Start</a>
-    </body>
+    <center>
+        <body style="background-color: rgb(13, 155, 84); ">
+            <div style="padding-top: 10%;">
+                <h1>Verification successfull</h1>
+                <h2>You can jump into the quiz</h2>
+            <button style="padding: 10px;background-color: darkorange;" ><a href="/login"><b>Start</b></a></button>
+        </div>
+        </body>
+    </center>
     <%}%>
 </html>
