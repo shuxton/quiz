@@ -207,7 +207,7 @@ router.post("/ans/:id/:uid/:qno", middleware.isLoggedIn, function (req, res) {
 
   var myquery = { _id: req.params.uid };
   var sc, y;
-
+try{
   Cquestions.find({ _id: req.params.id }).exec(function (err, found) {
     var ans1 = found[0].answer1
     var ans2 = found[0].answer2
@@ -269,6 +269,30 @@ router.post("/ans/:id/:uid/:qno", middleware.isLoggedIn, function (req, res) {
     }
 
   })
+} catch(err){
+  console.log(err)
+  User.find(
+    myquery
+  ).exec(function (err, found) {
+    sc = parseInt(found[0].score);
+    y = parseInt(found[0].qno) + 1;
+   
+    var newvalues = {
+      $set: {
+
+        qno: y,
+        imgCount:0
+
+      }
+    };
+    User.updateOne(
+      myquery, newvalues, function (err, res) {
+
+        console.log(sc);
+      }
+    )
+  })
+}
 
   res.redirect("/quiz?id="+req.params.uid);
 })
