@@ -1,0 +1,19 @@
+{question:"Connect",op1:"https://img.techpowerup.org/200703/aphrodites.jpg",op2:"https://img.techpowerup.org/200703/fires.jpg",op3:"https://img.techpowerup.org/200703/forgings.jpg
+",op4:"https://img.techpowerup.org/200703/cuckis.jpg
+",answer1:"hepheastus",answer2:"hephestus",answer3:"hephastus",placeholder:"",img:4}
+{question:"Connect",op1:"https://img.techpowerup.org/200703/deer.jpg
+",op2:"https://img.techpowerup.org/200703/raone.jpg
+",op3:"https://img.techpowerup.org/200703/omni.jpg
+",op4:"https://img.techpowerup.org/200703/wingss.jpg
+",answer1:"pushpak viman",answer2:"pushpakviman",answer3:"pushpak vimaan",placeholder:"",img:4}
+{question:"Connect",op1:"https://img.techpowerup.org/200703/fires.jpg",op2:"https://img.techpowerup.org/200703/vultures.jpg",op3:"https://img.techpowerup.org/200703/whatsapp-image-2020-07-03-at-12-13-47-pm.jpg
+",op4:"https://img.techpowerup.org/200703/infinityf.jpg
+",answer1:"prometheus",answer2:"promethus",answer3:"promethues",placeholder:"",img:4}
+{question:"Connect",op1:"https://img.techpowerup.org/200703/mummys.jpg",op2:"https://img.techpowerup.org/200703/reapers.jpg",op3:"https://img.techpowerup.org/200703/whatsapp-image-2020-07-03-at-12-21-05-pm.jpg
+",op4:"https://img.techpowerup.org/200703/jackal.jpg
+",answer1:"anubis",answer2:"anubes",answer3:"anubas",placeholder:"",img:4}
+{question:"Connect",op1:"https://img.techpowerup.org/200703/icarus.jpg",
+,answer1:"icarus",answer2:"icares",answer3:"icaris",placeholder:"",img:1}
+{question:"Connect",op1:"https://img.techpowerup.org/200703/pariss.jpg",op2:"https://img.techpowerup.org/200703/styxs.png",op3:"https://img.techpowerup.org/200703/trojanhorses.jpg
+",op4:"https://img.techpowerup.org/200703/heel.jpg
+",answer1:"achiles",answer2:"achilles",answer3:"achillies",placeholder:"",img:4}

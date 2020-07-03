@@ -197,7 +197,7 @@ router.post("/img/:id/:uid/:qno", middleware.isLoggedIn, function (req, res) {
     })
 
 
-  res.redirect("/quiz");
+  res.redirect("/quiz/id="+req.params.uid);
 
 })
 
@@ -270,7 +270,7 @@ router.post("/ans/:id/:uid/:qno", middleware.isLoggedIn, function (req, res) {
 
   })
 
-  res.redirect("/quiz");
+  res.redirect("/quiz/id="+req.params.uid);
 })
 
 
@@ -341,7 +341,7 @@ router.post("/:id/:uid/:qno", middleware.isLoggedIn, function (req, res) {
 
   })
 
-  res.redirect("/quiz");
+  res.redirect("/quiz/id="+req.params.uid);
 
 });
 
