@@ -21,7 +21,7 @@ mongoose.set("useFindAndModify", false);
 mongoose.set("useCreateIndex", true);
 mongoose.set("useUnifiedTopology", true);
 mongoose.connect(
-process.env.db_key
+process.env.db_key 
 );
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
@@ -59,6 +59,6 @@ app.use("/", indexRoutes);
 app.use("/quiz", quizRoutes);
 
 app.listen(process.env.PORT || 3000, process.env.IP, function () {
-  console.log("The Odyssey Server Has Started!");
+  console.log("shuxton's server has started!");
 });
 

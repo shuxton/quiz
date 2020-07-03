@@ -7,7 +7,7 @@ var cquestionsSchema = new mongoose.Schema({
   op3: String,
   op4: String,
   answer1: String,
-  answe2:String,
+  answer2:String,
   answer3:String,
   placeholder:String,
   img:Number

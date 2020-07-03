@@ -101,8 +101,7 @@ router.get("/", middleware.isLoggedIn, function (req, res) {
     a = 0;
   }
   User.find({_id:req.query.id},function(err,f){
-    console.log(f[0])
-    console.log(req.query.id)
+   
     if (err) {
       console.log(err);
     } else if(f.length!=0 && f[0].ver){
@@ -186,7 +185,7 @@ router.post("/img/:id/:uid/:qno", middleware.isLoggedIn, function (req, res) {
         User.updateOne(
           myquery, newvalues, function (err, res) {
   
-            console.log(sc);
+            
           }
         )
    
@@ -207,13 +206,16 @@ router.post("/ans/:id/:uid/:qno", middleware.isLoggedIn, function (req, res) {
 
   var myquery = { _id: req.params.uid };
   var sc, y;
-try{
+
+  
+
   Cquestions.find({ _id: req.params.id }).exec(function (err, found) {
+
     var ans1 = found[0].answer1
     var ans2 = found[0].answer2
     var ans3 = found[0].answer3
-
-    if (ans1.toUpperCase() === req.body.ans.toUpperCase() || ans2.toUpperCase() === req.body.ans.toUpperCase() ||ans3.toUpperCase() === req.body.ans.toUpperCase()) {
+if(typeof(req.body.ans) != 'undefined'){
+    if ((ans1.toUpperCase() === req.body.ans.toUpperCase() ||ans2.toUpperCase() === req.body.ans.toUpperCase()  ||ans3.toUpperCase() === req.body.ans.toUpperCase()) ){
       User.find(
         myquery
       ).exec(function (err, found) {
@@ -237,7 +239,7 @@ try{
         User.updateOne(
           myquery, newvalues, function (err, res) {
 
-            console.log(sc);
+            
           }
         )
       })
@@ -262,37 +264,37 @@ try{
         User.updateOne(
           myquery, newvalues, function (err, res) {
 
-            console.log(sc);
+            
+          }
+        )
+      })
+    }}
+    else {
+      User.find(
+        myquery
+      ).exec(function (err, found) {
+        sc = parseInt(found[0].score);
+        y = parseInt(found[0].qno) + 1;
+       
+        var newvalues = {
+          $set: {
+
+            qno: y,
+            imgCount:0
+
+          }
+        };
+        User.updateOne(
+          myquery, newvalues, function (err, res) {
+
+            
           }
         )
       })
     }
 
   })
-} catch(err){
-  console.log(err)
-  User.find(
-    myquery
-  ).exec(function (err, found) {
-    sc = parseInt(found[0].score);
-    y = parseInt(found[0].qno) + 1;
-   
-    var newvalues = {
-      $set: {
 
-        qno: y,
-        imgCount:0
-
-      }
-    };
-    User.updateOne(
-      myquery, newvalues, function (err, res) {
-
-        console.log(sc);
-      }
-    )
-  })
-}
 
   res.redirect("/quiz?id="+req.params.uid);
 })
@@ -333,7 +335,7 @@ router.post("/:id/:uid/:qno", middleware.isLoggedIn, function (req, res) {
         // User.updateOne(
         //   myquery, newvalues, function (err, res) {
 
-        //     console.log(sc);
+        //     
         //   }
         // )
       } else
@@ -347,7 +349,7 @@ router.post("/:id/:uid/:qno", middleware.isLoggedIn, function (req, res) {
         };
         User.updateOne(
           myquery, newvalues, function (err, res) {
-            console.log(sc);
+            
           }
         )
       }
