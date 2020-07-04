@@ -63,7 +63,7 @@ var link = "http://"+req.get('host') + "/verify?id=" + token;
 mailOptions={
   to : req.body.email,
   subject : "Please confirm your Email account",
-  html : "Hello fellow quizzers,<br> It’s an honour to have you aboard,<br>Hop on and take this journey through all the quizzes we got to offer!<br><a href="+link+">Click on the link to verify your email</a><br><br>Have fun,<br>Vinimaya" 
+  html : "Hello fellow quizzer,<br> It’s an honour to have you aboard,<br>Hop on and take this journey through all the quizzes we got to offer!<br><a href="+link+">Click on the link to verify your email</a><br><br>Have fun,<br>Vinimaya" 
 }
 
 
