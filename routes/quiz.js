@@ -205,7 +205,7 @@ router.post("/ans/:id/:uid/:qno", middleware.isLoggedIn, function (req, res) {
   a = a + 1;
 
   var myquery = { _id: req.params.uid };
-  var sc, y;
+  var sc, y,imgCount;
 
   
 
@@ -251,13 +251,17 @@ if(typeof(req.body.ans) != 'undefined'){
         myquery
       ).exec(function (err, found) {
         sc = parseInt(found[0].score);
-        y = parseInt(found[0].qno) + 1;
-       
+        y = parseInt(found[0].qno);
+       imgCount=parseInt(found[0].imgCount) + 1;
+       if(imgCount>=3){
+         imgCount=0;
+         y=parseInt(found[0].qno)+1
+       }
         var newvalues = {
           $set: {
 
             qno: y,
-            imgCount:0
+            imgCount:imgCount,
 
           }
         };
@@ -274,13 +278,17 @@ if(typeof(req.body.ans) != 'undefined'){
         myquery
       ).exec(function (err, found) {
         sc = parseInt(found[0].score);
-        y = parseInt(found[0].qno) + 1;
-       
+        y = parseInt(found[0].qno) ;
+        imgCount=parseInt(found[0].imgCount) + 1;
+        if(imgCount>=3){
+          imgCount=0;
+          y=parseInt(found[0].qno)+1
+        }
         var newvalues = {
           $set: {
 
             qno: y,
-            imgCount:0
+            imgCount:imgCount
 
           }
         };
