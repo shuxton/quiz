@@ -121,7 +121,7 @@ router.get("/", middleware.isLoggedIn, function (req, res) {
               url= found[0].url
 st=found[0].st
 et=found[0].et
-              res.render("index", {st,et,url,title:found[0].title,tag:found[0].tag,mcq:found[0].mcq,con:found[0].con, questions: allQuestions, cquestions: allCquestions, start: found[0].start, end: found[0].end, x, cx, a});
+              res.render("index", {imgCount:f[0].imgCount,st,et,url,title:found[0].title,tag:found[0].tag,mcq:found[0].mcq,con:found[0].con, questions: allQuestions, cquestions: allCquestions, start: found[0].start, end: found[0].end, x, cx, a});
             }
           })
        
