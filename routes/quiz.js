@@ -253,7 +253,7 @@ if(typeof(req.body.ans) != 'undefined'){
         sc = parseInt(found[0].score);
         y = parseInt(found[0].qno);
        imgCount=parseInt(found[0].imgCount) + 1;
-       if(imgCount>=3){
+       if(imgCount>=0){
          imgCount=0;
          y=parseInt(found[0].qno)+1
        }
@@ -280,7 +280,7 @@ if(typeof(req.body.ans) != 'undefined'){
         sc = parseInt(found[0].score);
         y = parseInt(found[0].qno) ;
         imgCount=parseInt(found[0].imgCount) + 1;
-        if(imgCount>=3){
+        if(imgCount>=0){
           imgCount=0;
           y=parseInt(found[0].qno)+1
         }
