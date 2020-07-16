@@ -210,7 +210,8 @@ router.post("/ans/:id/:uid/:qno", middleware.isLoggedIn, function (req, res) {
   
 
   Cquestions.find({ _id: req.params.id }).exec(function (err, found) {
-
+    var num_answers=parseInt(found[0].count)+1
+    if(num_answers>21)num_answers=21
     var ans1 = found[0].answer1
     var ans2 = found[0].answer2
     var ans3 = found[0].answer3
@@ -219,7 +220,7 @@ if(typeof(req.body.ans) != 'undefined'){
       User.find(
         myquery
       ).exec(function (err, found) {
-        sc = parseInt(found[0].score);
+        sc = parseInt(found[0].score)-((num_answers-1)*10);
         y = parseInt(found[0].qno) + 1;
         Host.find(
           {}
@@ -230,7 +231,7 @@ if(typeof(req.body.ans) != 'undefined'){
         })
         var newvalues = {
           $set: {
-            score: sc + 5,
+            score: sc + 1000,
             qno: y,
             imgCount:0
 
@@ -252,16 +253,16 @@ if(typeof(req.body.ans) != 'undefined'){
       ).exec(function (err, found) {
         sc = parseInt(found[0].score);
         y = parseInt(found[0].qno);
-       imgCount=parseInt(found[0].imgCount) + 1;
-       if(imgCount>=0){
-         imgCount=0;
-         y=parseInt(found[0].qno)+1
-       }
+        imgCount=parseInt(found[0].imgCount) + 1;
+      //  if(imgCount>=0){
+      //    imgCount=0;
+         y=parseInt(found[0].qno);
+       //}
         var newvalues = {
           $set: {
 
             qno: y,
-            imgCount:imgCount,
+           imgCount:imgCount,
 
           }
         };
@@ -280,10 +281,10 @@ if(typeof(req.body.ans) != 'undefined'){
         sc = parseInt(found[0].score);
         y = parseInt(found[0].qno) ;
         imgCount=parseInt(found[0].imgCount) + 1;
-        if(imgCount>=0){
-          imgCount=0;
-          y=parseInt(found[0].qno)+1
-        }
+        // if(imgCount>=0){
+        //   imgCount=0;
+          y=parseInt(found[0].qno)
+       // }
         var newvalues = {
           $set: {
 

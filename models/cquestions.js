@@ -10,7 +10,8 @@ var cquestionsSchema = new mongoose.Schema({
   answer2:String,
   answer3:String,
   placeholder:String,
-  img:Number
+  img:Number,
+  count:Number
 });
 
 

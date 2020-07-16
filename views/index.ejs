@@ -47,8 +47,13 @@ if(dis<=0 || n<s)y=mcq+con;
       <%}else if(y<mcq+con ){cx=cx+a %>
       <br><div class="caption">
         <h4 style="font-size: 25px;color: goldenrod;"><%=y+1%>)<%= cquestions[y-mcq].question %></h4>
-       
-        <!-- <p id="trial" style="font-size: 15px;color:firebrick;">No of trials left- <%=3-imgCount%></p> -->
+       <%if (imgCount>0){%>
+        <p id="trial" style="font-size: 15px;color:firebrick;">Incorrect answer</p>
+
+        <%}else if(imgCount==0 && y!=0){%>
+          <p id="trial" style="font-size: 15px;color:rgb(63, 178, 34);">Previous answer was correct!</p>
+
+        <%}%>
         <p id="qtime" style="font-size: 20px;color: crimson;"></p>
       </div>
       <center>
@@ -71,7 +76,7 @@ if(dis<=0 || n<s)y=mcq+con;
               <%}%>
             </div>
           </div>
-          <%}%>
+          <%}}%>
             </div>
       </center>
       <center>
@@ -82,8 +87,9 @@ if(dis<=0 || n<s)y=mcq+con;
           Next Clue
         </button>
 
-      </form>
-      <%}}%> -->
+      </form> -->
+      <!-- <%}%> -->
+      
       <form id="xx" action="/quiz/ans/<%=cquestions[y-mcq]._id%>/<%=currentUser._id%>/<%=currentUser.qno%>" method="POST">
         <label for="text" style="margin-left: 15px;font-size: 30px;color:royalblue;">Answer-</label>
         <input class="text" type="text" placeholder="<%=cquestions[y-mcq].placeholder%>" name="ans"
@@ -155,13 +161,13 @@ if(dis<=0 || n<s)y=mcq+con;
   }
 }
 
-  var cur = 60;
-  var qt = setInterval(function () {
-    tleft = cur;
-    document.getElementById("qtime").innerHTML = "Time Left:" + tleft;
-    if (tleft == 0) { document.getElementById("sub").click(); }
-    cur = cur - 1;
-  }, 1000)
+  // var cur = 60;
+  // var qt = setInterval(function () {
+  //   tleft = cur;
+  //   document.getElementById("qtime").innerHTML = "Time Left:" + tleft;
+  //   if (tleft == 0) { document.getElementById("sub").click(); }
+  //   cur = cur - 1;
+  // }, 1000)
 
 </script>
 
