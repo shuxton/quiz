@@ -20,7 +20,6 @@ if(dis<=0 || n<s)y=mcq+con;
       <%if(y<mcq){%>
       <form id="x" action="/quiz/<%=questions[y]._id%>/<%=currentUser._id%>/<%=currentUser.qno%>" method="POST">
 
-        <br><br><br><br><br><br>
 
         <div class="caption">
          <br> <h4 style="font-size: 25px;color: goldenrod;"><%=y+1%>)<%= questions[y].question %></h4>
@@ -58,8 +57,7 @@ if(dis<=0 || n<s)y=mcq+con;
         <p id="qtime" style="font-size: 20px;color: crimson;"></p>
       </div>
       <center>
-        <br><br><br><br><br><br>
-
+      
         <div class="row text-center" style="display:flex; flex-wrap: wrap;">
           <%if(cquestions[y-mcq].op1){for(var i=0;i<=cquestions[y-mcq].img;i++){%>
           <div class="col-md-3 col-sm-6">
