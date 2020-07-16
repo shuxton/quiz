@@ -243,6 +243,12 @@ if(typeof(req.body.ans) != 'undefined'){
             
           }
         )
+        Cquestions.updateOne(
+         {_id:req.params.id  },{$set:{count:num_answers,}}, function (err, res) {
+
+            
+          }
+        )
       })
 
       console.log("bingo")
