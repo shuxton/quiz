@@ -222,7 +222,7 @@ if(typeof(req.body.ans) != 'undefined'){
       ).exec(function (err, found) {
         sc = parseInt(found[0].score)-((num_answers-1)*10);
         y = parseInt(found[0].qno) + 1;
-        if(y==1)sc=0;
+        if(y==1)sc=-1000;
         Host.find(
           {}
         ).exec(function (err, found) {
