@@ -64,7 +64,11 @@
                   <td ><%=x%></td>
                   <td><%=user.email%></td>
                   <td><%=user.score%></td>
-                  <td><%=user.qno%></td>
+                  <%if(user.qno>0){%>
+                  <td><%=user.qno-1%></td>
+                  <%else{%>
+                    <td><%=user.qno-1%></td>
+                    <%}%>
                   </center>
                 </tr>
                 <%x=x+1}})%>
